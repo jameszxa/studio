@@ -8,6 +8,7 @@ import {Textarea} from '@/components/ui/textarea';
 import {Label} from '@/components/ui/label';
 import {Avatar, AvatarImage, AvatarFallback} from '@/components/ui/avatar';
 import {useEffect, useState} from 'react';
+import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group"
 
 const ApplySellerPage = () => {
   const [storeName, setStoreName] = useState('');
@@ -82,17 +83,17 @@ const ApplySellerPage = () => {
                 <div className="grid gap-4 mt-4">
                   <div className="grid gap-2">
                     <Label htmlFor="storeName">Store Name</Label>
-                    <Input type="text" id="storeName" placeholder="mystore" value={storeName}
+                    <Input type="text" id="storeName" placeholder="BUYong Store" value={storeName}
                       onChange={(e) => setStoreName(e.target.value)}/>
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="emailAddress">Email Address</Label>
-                    <Input type="email" id="emailAddress" placeholder="contact@mystore.com" value={emailAddress}
+                    <Input type="email" id="emailAddress" placeholder="contact@buyongstore.com" value={emailAddress}
                       onChange={(e) => setEmailAddress(e.target.value)}/>
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="phoneNumber">Phone Number</Label>
-                    <Input type="tel" id="phoneNumber" placeholder="(123) 456-7890" value={phoneNumber}
+                    <Input type="tel" id="phoneNumber" placeholder="(088) 123-4567" value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}/>
                   </div>
                   <Button size="sm" onClick={handleSave}>Save</Button>
@@ -117,7 +118,7 @@ const ApplySellerPage = () => {
               <CardContent className="grid gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="legalBusinessName">Legal Business Name</Label>
-                  <Input type="text" id="legalBusinessName" placeholder="CDO Enterprises"
+                  <Input type="text" id="legalBusinessName" placeholder="BUYong Enterprises"
                     value={legalBusinessName} onChange={(e) => setLegalBusinessName(e.target.value)}/>
                 </div>
                 <div className="grid gap-2">
@@ -175,8 +176,16 @@ const ApplySellerPage = () => {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="storeVisibility">Store visibility</Label>
-                  <Input type="text" id="storeVisibility" placeholder="Public" value={storeVisibility}
-                    onChange={(e) => setStoreVisibility(e.target.value)}/>
+                    <RadioGroup defaultValue="public" className="flex">
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="public" id="r1"  onClick={() => setStoreVisibility('public')}/>
+                        <Label htmlFor="r1">Public</Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="private" id="r2"  onClick={() => setStoreVisibility('private')}/>
+                        <Label htmlFor="r2">Private</Label>
+                      </div>
+                    </RadioGroup>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="storeCategories">Store categories</Label>
