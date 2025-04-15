@@ -25,10 +25,6 @@ const formSchema = z.object({
   country: z.string().min(2, {message: "Country must be at least 2 characters."}),
   state: z.string().min(2, {message: "Province must be at least 2 characters."}),
   locationOnMap: z.string().min(2, {message: "Location on map must be at least 2 characters."}),
-  productPerPage: z.string().refine(value => {
-    const num = parseInt(value, 10);
-    return !isNaN(num) && num > 0;
-  }, {message: "Product per page must be a valid number."}),
   termsAndConditions: z.string().min(10, {message: "Terms & conditions must be at least 10 characters."}),
   storeVisibility: z.enum(['public', 'private']),
   storeCategories: z.string().min(2, {message: "Store categories must be at least 2 characters."}),
@@ -56,7 +52,6 @@ const ApplySellerPage = () => {
       country: '',
       state: '',
       locationOnMap: '',
-      productPerPage: '25',
       termsAndConditions: '',
       storeVisibility: 'public',
       storeCategories: '',
@@ -74,7 +69,6 @@ const ApplySellerPage = () => {
   const country = watch("country");
   const state = watch("state");
   const locationOnMap = watch("locationOnMap");
-  const productPerPage = watch("productPerPage");
   const termsAndConditions = watch("termsAndConditions");
   const storeVisibility = watch("storeVisibility");
   const storeCategories = watch("storeCategories");
@@ -98,7 +92,6 @@ const ApplySellerPage = () => {
       country,
       state,
       locationOnMap,
-      productPerPage,
       termsAndConditions,
       storeVisibility,
       storeCategories,
@@ -262,15 +255,6 @@ const ApplySellerPage = () => {
               <Card className="shadow-none border-2 border-gray-200">
                 <CardContent className="grid gap-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="productPerPage">Product per page</Label>
-                    <Input type="number" id="productPerPage" placeholder="25"
-                           {...register("productPerPage", {valueAsNumber: true})}
-                    />
-                    {errors.productPerPage && (
-                      <p className="text-red-500 text-sm">{errors.productPerPage.message}</p>
-                    )}
-                  </div>
-                  <div className="grid gap-2">
                     <Label htmlFor="termsAndConditions">Terms &amp; conditions</Label>
                     <Textarea id="termsAndConditions" placeholder="Details"
                               {...register("termsAndConditions")}
@@ -351,7 +335,6 @@ const ApplySellerPage = () => {
 
             <div className="grid gap-2">
               <Label>Store Display Settings</Label>
-              <p>Products per page: {productPerPage || "25"}</p>
               <p>Terms &amp; Conditions: {termsAndConditions || "Not specified"}</p>
               <p>Visibility: {storeVisibility === 'public' ? 'Public' : 'Private'}</p>
               <p>Categories: {storeCategories || 'Uncategorized'}</p>
