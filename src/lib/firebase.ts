@@ -12,33 +12,37 @@ const messagingSenderId = process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID;
 const appId = process.env.NEXT_PUBLIC_FIREBASE_APP_ID;
 const measurementId = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
 
-if (!apiKey || !authDomain || !projectId || !storageBucket || !messagingSenderId || !appId || !measurementId) {
-  console.error("Missing Firebase configuration values. Firebase will not be initialized.");
-}
-
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/setup#config-object
-const firebaseConfig = {
-  apiKey: apiKey,
-  authDomain: authDomain,
-  projectId: projectId,
-  storageBucket: storageBucket,
-  messagingSenderId: messagingSenderId,
-  appId: appId,
-  measurementId: measurementId,
-};
-
-// Initialize Firebase
 let app;
 let analytics;
 let authInstance;
 
-try {
-  app = initializeApp(firebaseConfig);
-  analytics = getAnalytics(app);
-  authInstance = getAuth(app);
-} catch (e) {
-    console.error("Firebase initialization error:", e);
+if (apiKey && authDomain && projectId && storageBucket && messagingSenderId && appId && measurementId) {
+  // TODO: Replace the following with your app's Firebase project configuration
+  // See: https://firebase.google.com/docs/web/setup#config-object
+  const firebaseConfig = {
+    apiKey: apiKey,
+    authDomain: authDomain,
+    projectId: projectId,
+    storageBucket: storageBucket,
+    messagingSenderId: messagingSenderId,
+    appId: appId,
+    measurementId: measurementId,
+  };
+
+  // Initialize Firebase
+  try {
+    app = initializeApp(firebaseConfig);
+    analytics = getAnalytics(app);
+    authInstance = getAuth(app);
+  } catch (e) {
+      console.error("Firebase initialization error:", e);
+  }
+
+  export const auth = authInstance;
+} else {
+    console.error("Missing Firebase configuration values. Firebase will not be initialized.");
+    // Export a placeholder for auth to prevent further errors
+    export const auth = null;
 }
 
-export const auth = authInstance;
+export {};
