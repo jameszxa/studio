@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import Link from 'next/link';
 
 const AccountSettingsPage = () => {
     const router = useRouter();
@@ -84,6 +85,11 @@ const AccountSettingsPage = () => {
 
                         {/* Update Settings Button */}
                         <Button onClick={handleSettingsUpdate}>Update Settings</Button>
+                         <div className="mt-4">
+                            <Link href="/apply-seller" className="text-sm text-primary hover:underline">
+                                Apply as a Seller!
+                            </Link>
+                        </div>
                     </div>
                 </CardContent>
             </Card>

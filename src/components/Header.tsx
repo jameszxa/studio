@@ -63,7 +63,7 @@ const Header = () => {
 
       {/* User Profile Icon */}
       <Button variant="ghost" size="icon" asChild>
-        <Link href="/auth">
+        <Link href="/account-settings">
           <User className="h-6 w-6 text-black"/>
         </Link>
       </Button>
