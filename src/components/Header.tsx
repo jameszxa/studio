@@ -4,6 +4,7 @@ import React from 'react';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Search, User} from 'lucide-react';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -19,7 +20,7 @@ const Header = () => {
         <a href="#" className="hover:underline">Home</a>
         <a href="#" className="hover:underline">Contact</a>
         <a href="#" className="hover:underline">About</a>
-        <a href="#" className="hover:underline">Sign Up</a>
+        <Link href="/auth" className="hover:underline">Sign Up</Link>
       </nav>
 
       {/* Search Bar */}
