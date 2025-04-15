@@ -8,24 +8,76 @@ import {Textarea} from '@/components/ui/textarea';
 import {Label} from '@/components/ui/label';
 import {Avatar, AvatarImage, AvatarFallback} from '@/components/ui/avatar';
 import {useEffect, useState} from 'react';
-import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group"
+import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import * as z from "zod";
+
+const formSchema = z.object({
+  storeName: z.string().min(2, {message: "Store name must be at least 2 characters."}),
+  emailAddress: z.string().email({message: "Please enter a valid email address."}),
+  phoneNumber: z.string().min(7, {message: "Please enter a valid phone number."}),
+  legalBusinessName: z.string().min(2, {message: "Legal business name must be at least 2 characters."}),
+  addressLine1: z.string().min(2, {message: "Address line 1 must be at least 2 characters."}),
+  addressLine2: z.string().optional(),
+  city: z.string().min(2, {message: "City must be at least 2 characters."}),
+  postcode: z.string().min(4, {message: "Postcode must be at least 4 characters."}),
+  country: z.string().min(2, {message: "Country must be at least 2 characters."}),
+  state: z.string().min(2, {message: "Province must be at least 2 characters."}),
+  locationOnMap: z.string().min(2, {message: "Location on map must be at least 2 characters."}),
+  productPerPage: z.string().refine(value => {
+    const num = parseInt(value, 10);
+    return !isNaN(num) && num > 0;
+  }, {message: "Product per page must be a valid number."}),
+  termsAndConditions: z.string().min(10, {message: "Terms & conditions must be at least 10 characters."}),
+  storeVisibility: z.enum(['public', 'private']),
+  storeCategories: z.string().min(2, {message: "Store categories must be at least 2 characters."}),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 const ApplySellerPage = () => {
-  const [storeName, setStoreName] = useState('');
-  const [emailAddress, setEmailAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [legalBusinessName, setLegalBusinessName] = useState('');
-  const [addressLine1, setAddressLine1] = useState('');
-  const [addressLine2, setAddressLine2] = useState('');
-  const [city, setCity] = useState('');
-  const [postcode, setPostcode] = useState('');
-  const [country, setCountry] = useState('');
-  const [state, setStateValue] = useState('');
-  const [locationOnMap, setLocationOnMap] = useState('');
-  const [productPerPage, setProductPerPage] = useState('25');
-  const [termsAndConditions, setTermsAndConditions] = useState('');
-  const [storeVisibility, setStoreVisibility] = useState('public');
-  const [storeCategories, setStoreCategories] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: {errors, isSubmitting},
+    watch,
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      storeName: '',
+      emailAddress: '',
+      phoneNumber: '',
+      legalBusinessName: '',
+      addressLine1: '',
+      addressLine2: '',
+      city: '',
+      postcode: '',
+      country: '',
+      state: '',
+      locationOnMap: '',
+      productPerPage: '25',
+      termsAndConditions: '',
+      storeVisibility: 'public',
+      storeCategories: '',
+    },
+  });
+
+  const storeName = watch("storeName");
+  const emailAddress = watch("emailAddress");
+  const phoneNumber = watch("phoneNumber");
+  const legalBusinessName = watch("legalBusinessName");
+  const addressLine1 = watch("addressLine1");
+  const addressLine2 = watch("addressLine2");
+  const city = watch("city");
+  const postcode = watch("postcode");
+  const country = watch("country");
+  const state = watch("state");
+  const locationOnMap = watch("locationOnMap");
+  const productPerPage = watch("productPerPage");
+  const termsAndConditions = watch("termsAndConditions");
+  const storeVisibility = watch("storeVisibility");
+  const storeCategories = watch("storeCategories");
 
   useEffect(() => {
     // You can load data from localStorage or a similar state management solution here
@@ -54,8 +106,9 @@ const ApplySellerPage = () => {
     alert('Seller application details saved!');
   };
 
-  const handleApplyNow = () => {
+  const onSubmit = (data: FormValues) => {
     // Logic to submit the application
+    console.log('Application submitted!', data);
     alert('Application submitted!');
   };
 
@@ -86,19 +139,30 @@ const ApplySellerPage = () => {
                   <div className="grid gap-4 mt-4">
                     <div className="grid gap-2">
                       <Label htmlFor="storeName">Store Name</Label>
-                      <Input type="text" id="storeName" placeholder="BUYong Store" value={storeName}
-                             onChange={(e) => setStoreName(e.target.value)}/>
+                      <Input type="text" id="storeName" placeholder="BUYong Store"
+                             {...register("storeName")}
+                      />
+                      {errors.storeName && (
+                        <p className="text-red-500 text-sm">{errors.storeName.message}</p>
+                      )}
                     </div>
                     <div className="grid gap-2">
                       <Label htmlFor="emailAddress">Email Address</Label>
                       <Input type="email" id="emailAddress" placeholder="contact@buyongstore.com"
-                             value={emailAddress}
-                             onChange={(e) => setEmailAddress(e.target.value)}/>
+                             {...register("emailAddress")}
+                      />
+                      {errors.emailAddress && (
+                        <p className="text-red-500 text-sm">{errors.emailAddress.message}</p>
+                      )}
                     </div>
                     <div className="grid gap-2">
                       <Label htmlFor="phoneNumber">Phone Number</Label>
-                      <Input type="tel" id="phoneNumber" placeholder="(088) 123-4567" value={phoneNumber}
-                             onChange={(e) => setPhoneNumber(e.target.value)}/>
+                      <Input type="tel" id="phoneNumber" placeholder="(088) 123-4567"
+                             {...register("phoneNumber")}
+                      />
+                      {errors.phoneNumber && (
+                        <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>
+                      )}
                     </div>
                     <Button size="sm" onClick={handleSave}>Save</Button>
                   </div>
@@ -123,42 +187,71 @@ const ApplySellerPage = () => {
                   <div className="grid gap-2">
                     <Label htmlFor="legalBusinessName">Legal Business Name</Label>
                     <Input type="text" id="legalBusinessName" placeholder="BUYong Enterprises"
-                           value={legalBusinessName} onChange={(e) => setLegalBusinessName(e.target.value)}/>
+                           {...register("legalBusinessName")}
+                    />
+                    {errors.legalBusinessName && (
+                      <p className="text-red-500 text-sm">{errors.legalBusinessName.message}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="addressLine1">Address Line 1</Label>
                     <Input type="text" id="addressLine1" placeholder="Purok 1, Brgy. Patag"
-                           value={addressLine1} onChange={(e) => setAddressLine1(e.target.value)}/>
+                           {...register("addressLine1")}
+                    />
+                    {errors.addressLine1 && (
+                      <p className="text-red-500 text-sm">{errors.addressLine1.message}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="addressLine2">Address Line 2</Label>
                     <Input type="text" id="addressLine2" placeholder="Optional: Building Name, Floor"
-                           value={addressLine2} onChange={(e) => setAddressLine2(e.target.value)}/>
+                           {...register("addressLine2")}
+                    />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="city">City</Label>
-                    <Input type="text" id="city" placeholder="Cagayan de Oro" value={city}
-                           onChange={(e) => setCity(e.target.value)}/>
+                    <Input type="text" id="city" placeholder="Cagayan de Oro"
+                           {...register("city")}
+                    />
+                    {errors.city && (
+                      <p className="text-red-500 text-sm">{errors.city.message}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="postcode">Postcode / ZIP</Label>
-                    <Input type="text" id="postcode" placeholder="9000" value={postcode}
-                           onChange={(e) => setPostcode(e.target.value)}/>
+                    <Input type="text" id="postcode" placeholder="9000"
+                           {...register("postcode")}
+                    />
+                    {errors.postcode && (
+                      <p className="text-red-500 text-sm">{errors.postcode.message}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="country">Country</Label>
-                    <Input type="text" id="country" placeholder="Philippines" value={country}
-                           onChange={(e) => setCountry(e.target.value)}/>
+                    <Input type="text" id="country" placeholder="Philippines"
+                           {...register("country")}
+                    />
+                    {errors.country && (
+                      <p className="text-red-500 text-sm">{errors.country.message}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="state">Province</Label>
-                    <Input type="text" id="state" placeholder="Misamis Oriental" value={state}
-                           onChange={(e) => setStateValue(e.target.value)}/>
+                    <Input type="text" id="state" placeholder="Misamis Oriental"
+                           {...register("state")}
+                    />
+                    {errors.state && (
+                      <p className="text-red-500 text-sm">{errors.state.message}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="locationOnMap">Locate on Map</Label>
                     <Input type="text" id="locationOnMap" placeholder="Patag, Cagayan de Oro, Philippines"
-                           value={locationOnMap} onChange={(e) => setLocationOnMap(e.target.value)}/>
+                           {...register("locationOnMap")}
+                    />
+                    {errors.locationOnMap && (
+                      <p className="text-red-500 text-sm">{errors.locationOnMap.message}</p>
+                    )}
                   </div>
                   <Button size="sm" onClick={handleSave}>Save</Button>
                 </CardContent>
@@ -170,37 +263,51 @@ const ApplySellerPage = () => {
                 <CardContent className="grid gap-4">
                   <div className="grid gap-2">
                     <Label htmlFor="productPerPage">Product per page</Label>
-                    <Input type="number" id="productPerPage" placeholder="25" value={productPerPage}
-                           onChange={(e) => setProductPerPage(e.target.value)}/>
+                    <Input type="number" id="productPerPage" placeholder="25"
+                           {...register("productPerPage", {valueAsNumber: true})}
+                    />
+                    {errors.productPerPage && (
+                      <p className="text-red-500 text-sm">{errors.productPerPage.message}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="termsAndConditions">Terms &amp; conditions</Label>
-                    <Textarea id="termsAndConditions" placeholder="Details" value={termsAndConditions}
-                              onChange={(e) => setTermsAndConditions(e.target.value)}/>
+                    <Textarea id="termsAndConditions" placeholder="Details"
+                              {...register("termsAndConditions")}
+                    />
+                    {errors.termsAndConditions && (
+                      <p className="text-red-500 text-sm">{errors.termsAndConditions.message}</p>
+                    )}
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="storeVisibility">Store visibility</Label>
-                    <RadioGroup defaultValue="public" className="flex">
+                    <RadioGroup defaultValue="public" className="flex"
+                                {...register("storeVisibility")}
+                    >
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="public" id="r1" onClick={() => setStoreVisibility('public')}/>
+                        <RadioGroupItem value="public" id="r1"/>
                         <Label htmlFor="r1">Public</Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="private" id="r2" onClick={() => setStoreVisibility('private')}/>
+                        <RadioGroupItem value="private" id="r2"/>
                         <Label htmlFor="r2">Private</Label>
                       </div>
                     </RadioGroup>
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="storeCategories">Store categories</Label>
-                    <Input type="text" id="storeCategories" placeholder="categories" value={storeCategories}
-                           onChange={(e) => setStoreCategories(e.target.value)}/>
+                    <Input type="text" id="storeCategories" placeholder="categories"
+                           {...register("storeCategories")}
+                    />
+                    {errors.storeCategories && (
+                      <p className="text-red-500 text-sm">{errors.storeCategories.message}</p>
+                    )}
                   </div>
                   <Button size="sm" onClick={handleSave}>Save</Button>
                 </CardContent>
               </Card>
             </div>
-            <Button onClick={handleApplyNow}>Apply Now!</Button>
+            <Button onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>Apply Now!</Button>
           </CardContent>
         </Card>
       </div>
@@ -213,12 +320,12 @@ const ApplySellerPage = () => {
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="relative w-full mb-4 rounded-md overflow-hidden">
-                <img
-                  src="https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU" // Replace with your sale banner image
-                  alt="Store Banner"
-                  className="w-full h-48 object-cover"
-                />
-                <div className="absolute inset-0 bg-black opacity-20"></div>
+              <img
+                src="https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU" // Replace with your sale banner image
+                alt="Store Banner"
+                className="w-full h-48 object-cover"
+              />
+              <div className="absolute inset-0 bg-black opacity-20"></div>
             </div>
 
             <div className="flex items-center space-x-4">
