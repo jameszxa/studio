@@ -80,6 +80,23 @@ const ProductDetailPage = () => {
 
   const handleAddToCart = () => {
     //Basic "add to cart" logic
+    // Retrieve existing cart items from local storage or initialize an empty array
+    const existingCartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+    // Check if the item already exists in the cart
+    const existingCartItemIndex = existingCartItems.findIndex((item: any) => item.id === product?.id);
+
+    if (existingCartItemIndex !== -1) {
+      // If the item exists, update the quantity
+      existingCartItems[existingCartItemIndex].quantity += quantity;
+    } else {
+      // If the item doesn't exist, add it to the cart with the specified quantity
+      existingCartItems.push({...product, quantity});
+    }
+
+    // Store the updated cart items in local storage
+    localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+
     alert(`${quantity} of ${product?.name} added to cart!`);
   };
 
@@ -130,16 +147,6 @@ const ProductDetailPage = () => {
               <div className="text-3xl font-bold text-primary mb-4">PHP {product.price.toFixed(2)}</div>
 
               <CardDescription className="mb-4">{product.description}</CardDescription>
-
-              {/* Color Options (Example) */}
-              <div className="mb-4">
-                <div className="font-semibold">Colors:</div>
-                <div className="flex items-center mt-2">
-                  <div className="w-6 h-6 rounded-full bg-blue-500 mr-2 cursor-pointer"></div>
-                  <div className="w-6 h-6 rounded-full bg-red-500 mr-2 cursor-pointer"></div>
-                  {/* Add more color options */}
-                </div>
-              </div>
 
               {/* Quantity Selection */}
               <div className="flex items-center mb-4">
