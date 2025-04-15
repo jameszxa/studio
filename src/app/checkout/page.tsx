@@ -12,6 +12,7 @@ interface CartItem {
   name: string;
   price: number;
   image: string;
+  quantity: number;
 }
 
 const CheckoutPage = () => {
@@ -24,15 +25,31 @@ const CheckoutPage = () => {
     // Load cart items from local storage
     const storedCartItems = localStorage.getItem('cartItems');
     if (storedCartItems) {
-      const parsedCartItems = JSON.parse(storedCartItems);
-      setCartItems(parsedCartItems);
+      try {
+        const parsedCartItems = JSON.parse(storedCartItems);
+        if (Array.isArray(parsedCartItems)) {
+          setCartItems(parsedCartItems);
 
-      // Initialize quantities based on cart items
-      const initialQuantities: { [key: string]: number } = {};
-      parsedCartItems.forEach((item: CartItem) => {
-        initialQuantities[item.id] = 1; // Default quantity to 1
-      });
-      setQuantities(initialQuantities);
+          // Initialize quantities based on cart items
+          const initialQuantities: { [key: string]: number } = {};
+          parsedCartItems.forEach((item: CartItem) => {
+            initialQuantities[item.id] = item.quantity || 1; // Use stored quantity or default to 1
+          });
+          setQuantities(initialQuantities);
+        } else {
+          console.error('Stored cart items is not an array:', parsedCartItems);
+          // Handle the error appropriately, e.g., clear the cart
+          localStorage.removeItem('cartItems');
+          setCartItems([]);
+          setQuantities({});
+        }
+      } catch (error) {
+        console.error('Error parsing cart items from local storage:', error);
+        // Handle the error appropriately, e.g., clear the cart
+        localStorage.removeItem('cartItems');
+        setCartItems([]);
+        setQuantities({});
+      }
     }
   }, []);
 
@@ -44,7 +61,8 @@ const CheckoutPage = () => {
 
   const handleQuantityChange = (itemId: string, change: number) => {
     setQuantities(prevQuantities => {
-      const newQuantity = Math.max(1, (prevQuantities[itemId] || 1) + change); // Ensure quantity is not less than 1
+      const currentQuantity = prevQuantities[itemId] || 1;
+      const newQuantity = Math.max(1, currentQuantity + change); // Ensure quantity is not less than 1
       return {...prevQuantities, [itemId]: newQuantity};
     });
   };

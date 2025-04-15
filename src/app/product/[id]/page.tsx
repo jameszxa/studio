@@ -84,6 +84,10 @@ const ProductDetailPage = () => {
 
   const handleAddToCart = () => {
     //Basic "add to cart" logic
+    if (!product) {
+      console.error('No product to add to cart.');
+      return;
+    }
     // Retrieve existing cart items from local storage or initialize an empty array
     const existingCartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
@@ -95,7 +99,7 @@ const ProductDetailPage = () => {
       existingCartItems[existingCartItemIndex].quantity += quantity;
     } else {
       // If the item doesn't exist, add it to the cart with the specified quantity
-      existingCartItems.push({...product, quantity});
+      existingCartItems.push({...product, quantity: quantity});
     }
 
     // Store the updated cart items in local storage
