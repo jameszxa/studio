@@ -14,6 +14,7 @@ interface Product {
   description: string;
   price: number;
   image: string;
+  category: string;
 }
 
 const Home = () => {
@@ -90,5 +91,3 @@ const Home = () => {
 
 export default Home;
 
-
-    
