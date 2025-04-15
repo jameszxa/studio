@@ -30,9 +30,9 @@ const AuthPage = () => {
           <Button asChild>
             <Link href="/auth/create-account">Create Account</Link>
           </Button>
-          <Button asChild>
-            <Link href="/auth/sign-in">Sign In</Link>
-          </Button>
+          <div className='p-6'>
+                    Already an account? <Link href="/auth/sign-in">Sign In</Link>
+                </div>
         </CardContent>
       </Card>
     </div>
