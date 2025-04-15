@@ -12,36 +12,41 @@ const messagingSenderId = process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID;
 const appId = process.env.NEXT_PUBLIC_FIREBASE_APP_ID;
 const measurementId = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
 
-let app:any;
-let analytics:any;
-let authInstance:Auth | null = null;
+let app: any;
+let analytics: any;
+let authInstance: Auth | null = null;
 
 if (apiKey && authDomain && projectId && storageBucket && messagingSenderId && appId && measurementId) {
-  // TODO: Replace the following with your app's Firebase project configuration
-  // See: https://firebase.google.com/docs/web/setup#config-object
-  const firebaseConfig = {
-    apiKey: apiKey,
-    authDomain: authDomain,
-    projectId: projectId,
-    storageBucket: storageBucket,
-    messagingSenderId: messagingSenderId,
-    appId: appId,
-    measurementId: measurementId,
-  };
+    // TODO: Replace the following with your app's Firebase project configuration
+    // See: https://firebase.google.com/docs/web/setup#config-object
+    const firebaseConfig = {
+        apiKey: apiKey,
+        authDomain: authDomain,
+        projectId: projectId,
+        storageBucket: storageBucket,
+        messagingSenderId: messagingSenderId,
+        appId: appId,
+        measurementId: measurementId,
+    };
 
-  // Initialize Firebase
-  try {
-    app = initializeApp(firebaseConfig);
-    analytics = getAnalytics(app);
-    authInstance = getAuth(app);
-  } catch (e) {
-      console.error("Firebase initialization error:", e);
-  }
+    // Initialize Firebase
+    try {
+        app = initializeApp(firebaseConfig);
+        try {
+            analytics = getAnalytics(app);
+        } catch (e) {
+            console.error("Error initializing analytics:", e);
+        }
+        try {
+            authInstance = getAuth(app);
+        } catch (e) {
+            console.error("Error initializing auth:", e);
+        }
+    } catch (e) {
+        console.error("Firebase initialization error:", e);
+    }
 } else {
-    console.error("Missing Firebase configuration values. Firebase will not be initialized.");
-    // Export a placeholder for auth to prevent further errors
+    console.warn("Missing Firebase configuration values. Firebase might not be fully initialized.");
 }
 
 export const auth: Auth | null = authInstance;
-
-export {};
