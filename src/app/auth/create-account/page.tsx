@@ -57,7 +57,7 @@ const CreateAccountPage = () => {
           title: "Account created successfully!",
           description: "You can now sign in to your new account.",
         });
-        router.push('/');
+        router.push('/account-settings'); // Redirect to account settings
       } catch (error: any) {
         console.error("Firebase authentication error:", error);
   
