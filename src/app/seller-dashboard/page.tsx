@@ -25,43 +25,43 @@ const SellerDashboardPage = () => {
         </div>
 
         <div className="flex-1 p-4 space-y-1">
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md" data-active="true">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200" data-active="true">
             <ShoppingBag className="mr-2 h-4 w-4"/>
             Overview
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <Package className="mr-2 h-4 w-4"/>
             Products
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <Users className="mr-2 h-4 w-4"/>
             Customer
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <ListChecks className="mr-2 h-4 w-4"/>
             Orders
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <Share2 className="mr-2 h-4 w-4"/>
             Shipment
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <Store className="mr-2 h-4 w-4"/>
             Store Setting
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <Users className="mr-2 h-4 w-4"/>
             Platform Partner
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <MessageSquare className="mr-2 h-4 w-4"/>
             Feedback
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <HelpCircle className="mr-2 h-4 w-4"/>
             Help &amp; Support
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
             <Wallet className="mr-2 h-4 w-4"/>
             Withdraw
           </Button>
