@@ -48,6 +48,6 @@ if (!apiKey || !authDomain || !projectId || !storageBucket || !messagingSenderId
   } catch (e) {
     console.error("Error initializing auth:", e);
   }
-
-  export const auth = authInstance;
 }
+
+export const auth = authInstance;
