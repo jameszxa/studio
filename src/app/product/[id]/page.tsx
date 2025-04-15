@@ -88,8 +88,21 @@ const ProductDetailPage = () => {
 
   return (
     <div className="container mx-auto py-10">
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>{product.name}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <img src={product.image} alt={product.name} className="rounded-md mb-4 w-full h-64 object-cover"/>
+          <CardDescription>{product.description}</CardDescription>
+          <div className="font-bold text-primary mt-4">PHP {product.price.toFixed(2)}</div>
+          <div className="text-sm text-muted-foreground mt-2">Location: {product.location}</div>
+        </CardContent>
+      </Card>
+
       {/* Store Banner */}
-      <div className="bg-secondary rounded-md shadow-md p-4 mb-4">
+      <div className="bg-secondary rounded-md shadow-md p-4 mt-4">
         <div className="flex items-center">
           <img
             src={store.image}
@@ -104,17 +117,6 @@ const ProductDetailPage = () => {
           </div>
         </div>
       </div>
-      <Card>
-        <CardHeader>
-          <CardTitle>{product.name}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <img src={product.image} alt={product.name} className="rounded-md mb-4 w-full h-64 object-cover"/>
-          <CardDescription>{product.description}</CardDescription>
-          <div className="font-bold text-primary mt-4">PHP {product.price.toFixed(2)}</div>
-          <div className="text-sm text-muted-foreground mt-2">Location: {product.location}</div>
-        </CardContent>
-      </Card>
 
       <div className="mt-8">
         <h2 className="text-2xl font-semibold mb-4">Similar Products</h2>
