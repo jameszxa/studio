@@ -187,12 +187,12 @@ const ProductDetailPage = () => {
 
               {/* Add to Cart Button */}
               <div className="flex gap-2">
+                <Button className="w-1/2" onClick={handleBuyNow}>
+                  Buy Now
+                </Button>
                 <Button className="w-1/2" onClick={handleAddToCart}>
                   <ShoppingCart className="w-4 h-4 mr-2"/>
                   Add to cart
-                </Button>
-                <Button className="w-1/2" onClick={handleBuyNow}>
-                  Buy Now
                 </Button>
               </div>
 
