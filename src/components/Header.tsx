@@ -31,16 +31,16 @@ const Header = () => {
 
       {/* Navigation Links */}
       <nav className="hidden md:flex space-x-6">
-        <Link href="/" className="hover:underline">
+        <Link href="/" className="hover:underline text-black">
           Home
         </Link>
-        <Link href="/contact" className="hover:underline">
+        <Link href="/contact" className="hover:underline text-black">
           Contact
         </Link>
-        <Link href="/about" className="hover:underline">
+        <Link href="/about" className="hover:underline text-black">
           About
         </Link>
-        <Link href="/auth" className="hover:underline">
+        <Link href="/auth" className="hover:underline text-black">
           Sign Up
         </Link>
       </nav>
