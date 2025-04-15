@@ -6,6 +6,7 @@ import {Input} from '@/components/ui/input';
 import {Card, CardContent} from '@/components/ui/card';
 import {Trash} from 'lucide-react';
 import {cn} from '@/lib/utils';
+import Link from 'next/link';
 
 interface CartItem {
   id: string;
@@ -59,12 +60,13 @@ const CheckoutPage = () => {
     localStorage.setItem('quantities', JSON.stringify(quantities));
   }, [cartItems, quantities]);
 
-  const handleQuantityChange = (itemId: string, change: number) => {
-    setQuantities(prevQuantities => {
-      const currentQuantity = prevQuantities[itemId] || 1;
-      const newQuantity = Math.max(1, currentQuantity + change); // Ensure quantity is not less than 1
-      return {...prevQuantities, [itemId]: newQuantity};
-    });
+  const handleQuantityChange = (itemId: string, newQuantity: number) => {
+    if (newQuantity >= 1) {
+      setQuantities(prevQuantities => ({
+        ...prevQuantities,
+        [itemId]: newQuantity,
+      }));
+    }
   };
 
   const handleApplyCoupon = () => {
@@ -105,7 +107,7 @@ const CheckoutPage = () => {
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
 
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p>Your cart is empty. <Link href="/" className="text-primary">Return to Shop</Link></p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Cart Items */}
@@ -134,36 +136,17 @@ const CheckoutPage = () => {
                         </td>
                         <td className="px-4 py-2">PHP {item.price.toFixed(2)}</td>
                         <td className="px-4 py-2">
-                          <div className="flex items-center">
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              onClick={() => handleQuantityChange(item.id, -1)}
-                            >
-                              -
-                            </Button>
-                            <Input
-                              type="number"
-                              className="w-16 text-center mx-2"
-                              value={quantities[item.id] || 1}
-                              onChange={(e) => {
-                                const newQuantity = parseInt(e.target.value);
-                                if (!isNaN(newQuantity)) {
-                                  setQuantities(prevQuantities => ({
-                                    ...prevQuantities,
-                                    [item.id]: Math.max(1, newQuantity),
-                                  }));
-                                }
-                              }}
-                            />
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              onClick={() => handleQuantityChange(item.id, 1)}
-                            >
-                              +
-                            </Button>
-                          </div>
+                          <Input
+                            type="number"
+                            className="w-20 text-center"
+                            value={quantities[item.id] || 1}
+                            onChange={(e) => {
+                              const newQuantity = parseInt(e.target.value);
+                              if (!isNaN(newQuantity)) {
+                                handleQuantityChange(item.id, Math.max(1, newQuantity));
+                              }
+                            }}
+                          />
                         </td>
                         <td className="px-4 py-2">PHP {(item.price * (quantities[item.id] || 1)).toFixed(2)}</td>
                         <td className="px-4 py-2">
@@ -176,7 +159,7 @@ const CheckoutPage = () => {
                     </tbody>
                   </table>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 flex items-center">
                   <Input
                     type="text"
                     placeholder="Coupon Code"
@@ -186,6 +169,7 @@ const CheckoutPage = () => {
                   />
                   <Button onClick={handleApplyCoupon}>Apply Coupon</Button>
                 </div>
+                <Link href="/" className="mt-4 text-primary">Return to Shop</Link>
               </CardContent>
             </Card>
           </div>
