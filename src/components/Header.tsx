@@ -40,9 +40,6 @@ const Header = () => {
         <Link href="/about" className="hover:underline text-black">
           About
         </Link>
-        <Link href="/auth" className="hover:underline text-black">
-          Sign Up
-        </Link>
       </nav>
 
       {/* Search Bar */}
@@ -65,8 +62,10 @@ const Header = () => {
       </div>
 
       {/* User Profile Icon */}
-      <Button variant="ghost" size="icon">
-        <User className="h-6 w-6 text-black"/>
+      <Button variant="ghost" size="icon" asChild>
+        <Link href="/auth">
+          <User className="h-6 w-6 text-black"/>
+        </Link>
       </Button>
     </header>
   );
