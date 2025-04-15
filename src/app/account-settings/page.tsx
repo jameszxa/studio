@@ -91,9 +91,17 @@ const AccountSettingsPage = () => {
             <CardHeader>
               <CardTitle>My Wishlist</CardTitle>
             </CardHeader>
-            <CardContent>
-              <Link href="/apply-seller" className="text-sm text-primary hover:underline">
-                Apply As a Seller!
+            <CardContent className="space-y-2">
+              <Link href="#" className="block hover:underline">View Wishlist</Link>
+            </CardContent>
+          </Card>
+          <Card className="mt-4">
+            <CardHeader>
+              <CardTitle>Apply As a Seller!</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Link href="/apply-seller" className="block hover:underline">
+                Apply Now!
               </Link>
             </CardContent>
           </Card>
