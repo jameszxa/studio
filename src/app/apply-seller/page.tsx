@@ -212,6 +212,15 @@ const ApplySellerPage = () => {
             <CardTitle>Store Preview</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-4">
+            <div className="relative w-full mb-4 rounded-md overflow-hidden">
+                <img
+                  src="https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU" // Replace with your sale banner image
+                  alt="Store Banner"
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute inset-0 bg-black opacity-20"></div>
+            </div>
+
             <div className="flex items-center space-x-4">
               <Avatar className="w-20 h-20">
                 <AvatarImage src="https://picsum.photos/100/100" alt="Store Profile"/>
