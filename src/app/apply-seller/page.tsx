@@ -70,7 +70,7 @@ const ApplySellerPage = () => {
             <Card className="shadow-none border-2 border-gray-200">
               <CardContent>
                 <div className="flex items-center space-x-4">
-                  <Avatar>
+                  <Avatar className="w-20 h-20">
                     <AvatarImage src="https://picsum.photos/100/100" alt="Store Profile"/>
                     <AvatarFallback>SP</AvatarFallback>
                   </Avatar>
@@ -100,7 +100,7 @@ const ApplySellerPage = () => {
                 <div className="mt-4">
                   <Label htmlFor="store-profile-photo">Store profile photo</Label>
                   <div className="flex items-center space-x-4 mt-2">
-                    <Avatar>
+                    <Avatar className="w-12 h-12">
                       <AvatarImage src="https://picsum.photos/50/50" alt="Store Profile Photo"/>
                       <AvatarFallback>SPP</AvatarFallback>
                     </Avatar>
