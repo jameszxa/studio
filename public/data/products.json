@@ -2,66 +2,68 @@
 [
   {
     "id": "1",
-    "name": "EcoFlow RIVER 2 Pro Portable Power Station",
-    "description": "The EcoFlow RIVER 2 Pro is a compact and powerful portable power station perfect for camping, tailgating, and emergency power. With a 768Wh capacity and fast charging, you can keep your essential devices powered up.",
-    "price": 599.00,
-    "image": "https://i.picsum.photos/id/1084/536/354.jpg?hmac=vD9sU71RAq160czL40QKPe-KjNwK0ORdtkPY-99W2b4",
-    "category": "Electronics"
+    "name": "Barong Tagalog",
+    "description": "The Barong Tagalog is the national dress of the Philippines. It is an embroidered long-sleeved shirt made of lightweight material.",
+    "price": 2500.00,
+    "image": "https://i.picsum.photos/id/870/1000/667.jpg?hmac=LRXF6JbJgTqt3JZT1tH2Fxh1RxtdhYIuPEQj9jFvyoU",
+    "category": "Clothing"
   },
   {
     "id": "2",
-    "name": "Patagonia Black Hole Duffel 55L",
-    "description": "The Patagonia Black Hole Duffel is a rugged and weather-resistant duffel bag that's perfect for travel and adventure. Made from recycled materials, this duffel can withstand the rigors of the road.",
-    "price": 149.00,
-    "image": "https://i.picsum.photos/id/647/4928/3264.jpg?hmac=O-R0jMjcVPImLqMvQjLQUq2afOW0LiiVjEw-b2EeNLM",
-    "category": "Outdoor Gear"
+    "name": "Baguio Strawberry Jam",
+    "description": "A sweet and delicious jam made from fresh strawberries grown in Baguio, Philippines.",
+    "price": 250.00,
+    "image": "https://i.picsum.photos/id/1047/4928/3264.jpg?hmac=kfQCjnF609wS5K-nrjoAgZfEju2c0j77jqvGCUI6w2U",
+    "category": "Food"
   },
   {
     "id": "3",
-    "name": "Sony WH-1000XM5 Wireless Noise-Canceling Headphones",
-    "description": "Experience industry-leading noise cancellation with the Sony WH-1000XM5 headphones. Enjoy premium sound quality, all-day comfort, and seamless connectivity.",
-    "price": 399.99,
-    "image": "https://i.picsum.photos/id/254/3872/2592.jpg?hmac=F-OTVUnjF3Fwruk4l3FJL8W-g3V3VwunmCzEa2d_c4k",
-    "category": "Electronics"
+    "name": "Handwoven Basket",
+    "description": "A beautifully handwoven basket made by local artisans in the Philippines. Perfect for storage or decoration.",
+    "price": 800.00,
+    "image": "https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3G9YZj9epn5vL92jikkSmUxEdzKiyGvtfPMMOwnG5JM",
+    "category": "Handicrafts"
   },
   {
     "id": "4",
-    "name": "Hydro Flask 32 oz Water Bottle",
-    "description": "Stay hydrated on the go with the Hydro Flask 32 oz water bottle. Made from durable stainless steel, this bottle keeps your drinks cold for up to 24 hours or hot for up to 12 hours.",
-    "price": 34.95,
-    "image": "https://i.picsum.photos/id/106/3000/2000.jpg?hmac=EPhjkBVSjS-4q6Y99_0KjXQ5RHjLteJ9Wd-7e2JjCcI",
-    "category": "Outdoor Gear"
+    "name": "Dried Mangoes",
+    "description": "A popular Filipino snack made from sweet and juicy Philippine mangoes.",
+    "price": 300.00,
+    "image": "https://i.picsum.photos/id/105/3672/4896.jpg?hmac=WxLgV22eCjTtq_Kj10jKzx0uD9vqGeqjZw-Y-oFMgOE",
+    "category": "Food"
   },
   {
     "id": "5",
-    "name": "DJI Mini 3 Pro Drone",
-    "description": "Capture stunning aerial footage with the DJI Mini 3 Pro drone. Lightweight and foldable, this drone features a 4K camera, obstacle avoidance, and intelligent flight modes.",
-    "price": 759.00,
-    "image": "https://i.picsum.photos/id/292/4928/3264.jpg?hmac=N_2kjuJ0S98wHZWtlcRgtlA0YgHSG1c_2Y9DQZ4IOy8",
-    "category": "Electronics"
+    "name": "Capiz Shell Decor",
+    "description": "A decorative item made from capiz shells, a type of oyster found in Philippine waters.",
+    "price": 1200.00,
+    "image": "https://i.picsum.photos/id/1062/4147/2756.jpg?hmac=W6wK-dVw-cGuKffZ-n7R2-byt7szm979KI3WCc5V-dQ",
+    "category": "Handicrafts"
   },
   {
     "id": "6",
-    "name": "The North Face Base Camp Backpack",
-    "description": "The North Face Base Camp Backpack is a durable and versatile backpack that's perfect for everyday use and travel. With a spacious main compartment and multiple pockets, you can carry all your essentials with ease.",
-    "price": 129.00,
-    "image": "https://i.picsum.photos/id/115/4134/2756.jpg?hmac=f1964PsgEOqH-iII-p6-Jiq60XIw-Q9jH17wA9yrH0c",
-    "category": "Outdoor Gear"
+    "name": "Luzon Coffee Beans",
+    "description": "High quality coffee beans sourced from the Luzon region of the Philippines. Enjoy a rich and aromatic cup.",
+    "price": 450.00,
+    "image": "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbSh2NR-O9wkj16w_E_Zm-zRv1nnHoKt94jR9dQ",
+    "category": "Food"
   },
   {
     "id": "7",
-    "name": "Apple iPhone 15 Pro",
-    "description": "The Apple iPhone 15 Pro features a stunning display, advanced camera system, and powerful A17 Bionic chip. Experience the latest in mobile technology with the iPhone 15 Pro.",
-    "price": 1199.00,
-    "image": "https://i.picsum.photos/id/1003/1181/1772.jpg?hmac=o9NJtyaGEx99EK3T3qKkk0Yq7-KRe0GQqhmHZW2DxvA",
-    "category": "Electronics"
+    "name": "Mother of Pearl Jewelry Box",
+    "description": "An elegant jewelry box inlaid with mother of pearl, handcrafted by skilled Filipino artisans.",
+    "price": 1800.00,
+    "image": "https://i.picsum.photos/id/1074/5472/3648.jpg?hmac=cWqXjxLSiCHVtLuJY4qJvOMO9jJqF4ZAYo4UUW_GX74",
+    "category": "Handicrafts"
   },
   {
     "id": "8",
-    "name": "Columbia Newton Ridge Hiking Boots",
-    "description": "Conquer the trails with the Columbia Newton Ridge Hiking Boots. These waterproof and durable boots provide excellent support and traction for all your hiking adventures.",
-    "price": 89.99,
-    "image": "https://i.picsum.photos/id/497/5616/3744.jpg?hmac=qG4pcQW-R_C_yD_rfZ0Y6jJ2J7CHCmGRDqgvpTD3wNc",
-    "category": "Outdoor Gear"
+    "name": "Yakan Cloth",
+    "description": "A vibrant and intricately woven cloth from the Yakan tribe of Mindanao, Philippines.",
+    "price": 3000.00,
+    "image": "https://i.picsum.photos/id/1080/6720/4480.jpg?hmac=CJ-JnrRzVsOFpFjRyXJ3EtmEV_jI7YSY99F-WZcQo9k",
+    "category": "Clothing"
   }
 ]
+
+    
