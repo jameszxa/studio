@@ -17,12 +17,23 @@ interface Product {
   location: string;
 }
 
+interface Store {
+  name: string;
+  image: string;
+}
+
 const ProductDetailPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [similarProducts, setSimilarProducts] = useState<SuggestSimilarProductsOutput | null>(null);
   const {id} = useParams<{ id: string }>();
   const searchParams = useSearchParams();
   const searchTerm = searchParams.get('searchTerm') || '';
+
+  // Mock store data
+  const [store, setStore] = useState<Store>({
+    name: "Aling Nena's Store",
+    image: "https://i.picsum.photos/id/1027/800/600.jpg?hmac=unTLxR47WKMzK-U11fPw3mMsJOJ0VjKy1WJgsCPiucg",
+  });
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -77,6 +88,22 @@ const ProductDetailPage = () => {
 
   return (
     <div className="container mx-auto py-10">
+      {/* Store Banner */}
+      <div className="bg-secondary rounded-md shadow-md p-4 mb-4">
+        <div className="flex items-center">
+          <img
+            src={store.image}
+            alt={store.name}
+            className="rounded-full w-20 h-20 object-cover mr-4"
+          />
+          <div>
+            <h2 className="text-xl font-semibold">{store.name}</h2>
+            <Button size="sm" onClick={() => alert('Visit store functionality coming soon!')}>
+              Visit store
+            </Button>
+          </div>
+        </div>
+      </div>
       <Card>
         <CardHeader>
           <CardTitle>{product.name}</CardTitle>
