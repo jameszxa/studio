@@ -100,7 +100,7 @@ const AccountSettingsPage = () => {
               <CardTitle>Apply As a Seller!</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              <Link href="/apply-seller" className="block hover:underline">
+              <Link href="/apply-seller" className="block hover:underline" style={{ color: '#FFAD33' }}>
                 Apply Now!
               </Link>
             </CardContent>
