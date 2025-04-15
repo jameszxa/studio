@@ -96,17 +96,19 @@ const Header = () => {
       </div>
 
       {/* Cart Icon */}
-      <div className="flex items-center space-x-2 relative">
-        <Button variant="ghost" size="icon" asChild>
-          <Link href="/checkout">
-            <ShoppingCart className="h-6 w-6 text-black"/>
-          </Link>
-        </Button>
-        {cartItemCount > 0 && (
-          <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-1 py-0.5">
-            {cartItemCount}
-          </span>
-        )}
+      <div className="flex items-center space-x-2">
+        <div className="relative">
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="/checkout">
+              <ShoppingCart className="h-6 w-6 text-black"/>
+            </Link>
+          </Button>
+          {cartItemCount > 0 && (
+            <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-1 py-0.5">
+              {cartItemCount}
+            </span>
+          )}
+        </div>
 
         {/* User Profile Icon */}
         <Button variant="ghost" size="icon" asChild>
@@ -120,3 +122,4 @@ const Header = () => {
 };
 
 export default Header;
+
