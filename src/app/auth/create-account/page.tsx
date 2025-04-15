@@ -12,8 +12,6 @@ import { toast } from "@/hooks/use-toast";
 import { Icons } from "@/components/icons";
 import { useRouter } from 'next/navigation';
 import { createUser } from '@/services/user-service';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
 
 const CreateAccountPage = () => {
     const [isLoading, setIsLoading] = React.useState(false);
@@ -42,17 +40,7 @@ const CreateAccountPage = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
       setIsLoading(true);
       try {
-        if (!auth) {
-          console.error("Firebase Auth not initialized.");
-          toast({
-            variant: "destructive",
-            title: "Error creating account.",
-            description: "Firebase Auth is not properly initialized. Please try again later.",
-          });
-          setIsLoading(false);
-          return;
-        }
-        await createUserWithEmailAndPassword(auth, values.email, values.password);
+        await createUser(values.email, values.password);
         toast({
           title: "Account created successfully!",
           description: "You can now sign in to your new account.",
