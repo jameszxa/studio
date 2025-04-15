@@ -16,11 +16,9 @@ const measurementId = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
 
 let app: FirebaseApp;
 let analytics: FirebaseAnalytics | undefined;
-let authInstance: Auth;
+let authInstance: Auth | undefined;
 
-if (!apiKey || !authDomain || !projectId || !storageBucket || !messagingSenderId || !appId || !measurementId) {
-  console.error("Missing Firebase configuration values. Firebase will not be initialized.");
-} else {
+if (apiKey && authDomain && projectId && storageBucket && messagingSenderId && appId && measurementId) {
   const firebaseConfig = {
     apiKey: apiKey,
     authDomain: authDomain,
@@ -48,6 +46,8 @@ if (!apiKey || !authDomain || !projectId || !storageBucket || !messagingSenderId
   } catch (e) {
     console.error("Error initializing auth:", e);
   }
+} else {
+    console.error("Missing Firebase configuration values. Firebase will not be initialized.");
 }
 
 export const auth = authInstance;
