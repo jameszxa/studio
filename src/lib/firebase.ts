@@ -14,7 +14,7 @@ const messagingSenderId = process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID;
 const appId = process.env.NEXT_PUBLIC_FIREBASE_APP_ID;
 const measurementId = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
 
-let app: FirebaseApp;
+let app: FirebaseApp | undefined;
 let analytics: FirebaseAnalytics | undefined;
 let authInstance: Auth | undefined;
 
@@ -51,3 +51,4 @@ if (apiKey && authDomain && projectId && storageBucket && messagingSenderId && a
 }
 
 export const auth = authInstance;
+
