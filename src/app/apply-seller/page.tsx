@@ -117,42 +117,42 @@ const ApplySellerPage = () => {
               <CardContent className="grid gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="legalBusinessName">Legal Business Name</Label>
-                  <Input type="text" id="legalBusinessName" placeholder="Texas, Inc."
+                  <Input type="text" id="legalBusinessName" placeholder="CDO Enterprises"
                     value={legalBusinessName} onChange={(e) => setLegalBusinessName(e.target.value)}/>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="addressLine1">Address Line 1</Label>
-                  <Input type="text" id="addressLine1" placeholder="1629 NEW MEXICO 48"
+                  <Input type="text" id="addressLine1" placeholder="Purok 1, Brgy. Patag"
                     value={addressLine1} onChange={(e) => setAddressLine1(e.target.value)}/>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="addressLine2">Address Line 2</Label>
-                  <Input type="text" id="addressLine2" placeholder=""
+                  <Input type="text" id="addressLine2" placeholder="Optional: Building Name, Floor"
                     value={addressLine2} onChange={(e) => setAddressLine2(e.target.value)}/>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="city">City</Label>
-                  <Input type="text" id="city" placeholder="RTO" value={city}
+                  <Input type="text" id="city" placeholder="Cagayan de Oro" value={city}
                     onChange={(e) => setCity(e.target.value)}/>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="postcode">Postcode / ZIP</Label>
-                  <Input type="text" id="postcode" placeholder="86372" value={postcode}
+                  <Input type="text" id="postcode" placeholder="9000" value={postcode}
                     onChange={(e) => setPostcode(e.target.value)}/>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="country">Country</Label>
-                  <Input type="text" id="country" placeholder="United States" value={country}
+                  <Input type="text" id="country" placeholder="Philippines" value={country}
                     onChange={(e) => setCountry(e.target.value)}/>
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="state">State</Label>
-                  <Input type="text" id="state" placeholder="New York" value={state}
+                  <Label htmlFor="state">Province</Label>
+                  <Input type="text" id="state" placeholder="Misamis Oriental" value={state}
                     onChange={(e) => setStateValue(e.target.value)}/>
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="locationOnMap">Locate on Map</Label>
-                  <Input type="text" id="locationOnMap" placeholder="RTO, New York, United States"
+                  <Input type="text" id="locationOnMap" placeholder="Patag, Cagayan de Oro, Philippines"
                     value={locationOnMap} onChange={(e) => setLocationOnMap(e.target.value)}/>
                 </div>
                 <Button size="sm" onClick={handleSave}>Save</Button>
