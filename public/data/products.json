@@ -1,0 +1,67 @@
+
+[
+  {
+    "id": "1",
+    "name": "EcoFlow RIVER 2 Pro Portable Power Station",
+    "description": "The EcoFlow RIVER 2 Pro is a compact and powerful portable power station perfect for camping, tailgating, and emergency power. With a 768Wh capacity and fast charging, you can keep your essential devices powered up.",
+    "price": 599.00,
+    "image": "https://i.picsum.photos/id/1084/536/354.jpg?hmac=vD9sU71RAq160czL40QKPe-KjNwK0ORdtkPY-99W2b4",
+    "category": "Electronics"
+  },
+  {
+    "id": "2",
+    "name": "Patagonia Black Hole Duffel 55L",
+    "description": "The Patagonia Black Hole Duffel is a rugged and weather-resistant duffel bag that's perfect for travel and adventure. Made from recycled materials, this duffel can withstand the rigors of the road.",
+    "price": 149.00,
+    "image": "https://i.picsum.photos/id/647/4928/3264.jpg?hmac=O-R0jMjcVPImLqMvQjLQUq2afOW0LiiVjEw-b2EeNLM",
+    "category": "Outdoor Gear"
+  },
+  {
+    "id": "3",
+    "name": "Sony WH-1000XM5 Wireless Noise-Canceling Headphones",
+    "description": "Experience industry-leading noise cancellation with the Sony WH-1000XM5 headphones. Enjoy premium sound quality, all-day comfort, and seamless connectivity.",
+    "price": 399.99,
+    "image": "https://i.picsum.photos/id/254/3872/2592.jpg?hmac=F-OTVUnjF3Fwruk4l3FJL8W-g3V3VwunmCzEa2d_c4k",
+    "category": "Electronics"
+  },
+  {
+    "id": "4",
+    "name": "Hydro Flask 32 oz Water Bottle",
+    "description": "Stay hydrated on the go with the Hydro Flask 32 oz water bottle. Made from durable stainless steel, this bottle keeps your drinks cold for up to 24 hours or hot for up to 12 hours.",
+    "price": 34.95,
+    "image": "https://i.picsum.photos/id/106/3000/2000.jpg?hmac=EPhjkBVSjS-4q6Y99_0KjXQ5RHjLteJ9Wd-7e2JjCcI",
+    "category": "Outdoor Gear"
+  },
+  {
+    "id": "5",
+    "name": "DJI Mini 3 Pro Drone",
+    "description": "Capture stunning aerial footage with the DJI Mini 3 Pro drone. Lightweight and foldable, this drone features a 4K camera, obstacle avoidance, and intelligent flight modes.",
+    "price": 759.00,
+    "image": "https://i.picsum.photos/id/292/4928/3264.jpg?hmac=N_2kjuJ0S98wHZWtlcRgtlA0YgHSG1c_2Y9DQZ4IOy8",
+    "category": "Electronics"
+  },
+  {
+    "id": "6",
+    "name": "The North Face Base Camp Backpack",
+    "description": "The North Face Base Camp Backpack is a durable and versatile backpack that's perfect for everyday use and travel. With a spacious main compartment and multiple pockets, you can carry all your essentials with ease.",
+    "price": 129.00,
+    "image": "https://i.picsum.photos/id/115/4134/2756.jpg?hmac=f1964PsgEOqH-iII-p6-Jiq60XIw-Q9jH17wA9yrH0c",
+    "category": "Outdoor Gear"
+  },
+  {
+    "id": "7",
+    "name": "Apple iPhone 15 Pro",
+    "description": "The Apple iPhone 15 Pro features a stunning display, advanced camera system, and powerful A17 Bionic chip. Experience the latest in mobile technology with the iPhone 15 Pro.",
+    "price": 1199.00,
+    "image": "https://i.picsum.photos/id/1003/1181/1772.jpg?hmac=o9NJtyaGEx99EK3T3qKkk0Yq7-KRe0GQqhmHZW2DxvA",
+    "category": "Electronics"
+  },
+  {
+    "id": "8",
+    "name": "Columbia Newton Ridge Hiking Boots",
+    "description": "Conquer the trails with the Columbia Newton Ridge Hiking Boots. These waterproof and durable boots provide excellent support and traction for all your hiking adventures.",
+    "price": 89.99,
+    "image": "https://i.picsum.photos/id/497/5616/3744.jpg?hmac=qG4pcQW-R_C_yD_rfZ0Y6jJ2J7CHCmGRDqgvpTD3wNc",
+    "category": "Outdoor Gear"
+  }
+]
