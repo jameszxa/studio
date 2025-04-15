@@ -14,6 +14,7 @@ interface Product {
   price: number;
   image: string;
   category: string;
+  location: string;
 }
 
 const Home = () => {
@@ -29,7 +30,9 @@ const Home = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data: Product[] = await response.json();
-        setProducts(data);
+        // Filter products to only include those from Cagayan de Oro
+        const localProducts = data.filter(product => product.location === "Cagayan de Oro");
+        setProducts(localProducts);
       } catch (error) {
         console.error('Could not load products:', error);
       }
@@ -104,3 +107,4 @@ const Home = () => {
 
 export default Home;
 
+    

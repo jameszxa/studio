@@ -14,6 +14,7 @@ interface Product {
   price: number;
   image: string;
   category: string;
+  location: string;
 }
 
 const ProductDetailPage = () => {
@@ -81,6 +82,7 @@ const ProductDetailPage = () => {
           <img src={product.image} alt={product.name} className="rounded-md mb-4 w-full h-64 object-cover"/>
           <CardDescription>{product.description}</CardDescription>
           <div className="font-bold text-primary mt-4">PHP {product.price.toFixed(2)}</div>
+          <div className="text-sm text-muted-foreground mt-2">Location: {product.location}</div>
         </CardContent>
       </Card>
 
@@ -117,3 +119,5 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
+
+    
