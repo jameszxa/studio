@@ -1,6 +1,8 @@
+"use client";
+
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp, FirebaseApp, getApp } from "firebase/app";
+import { getAnalytics, FirebaseAnalytics } from "firebase/analytics";
 import { getAuth, Auth } from "firebase/auth";
 
 // Check if all required environment variables are present
@@ -12,13 +14,12 @@ const messagingSenderId = process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID;
 const appId = process.env.NEXT_PUBLIC_FIREBASE_APP_ID;
 const measurementId = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
 
-let app: any;
-let analytics: any;
-let authInstance: Auth | null = null;
+let app: FirebaseApp;
+let analytics: FirebaseAnalytics;
+let authInstance: Auth;
 
+// Initialize Firebase only if all required environment variables are present
 if (apiKey && authDomain && projectId && storageBucket && messagingSenderId && appId && measurementId) {
-    // TODO: Replace the following with your app's Firebase project configuration
-    // See: https://firebase.google.com/docs/web/setup#config-object
     const firebaseConfig = {
         apiKey: apiKey,
         authDomain: authDomain,
@@ -29,24 +30,34 @@ if (apiKey && authDomain && projectId && storageBucket && messagingSenderId && a
         measurementId: measurementId,
     };
 
-    // Initialize Firebase
     try {
-        app = initializeApp(firebaseConfig);
-        try {
-            analytics = getAnalytics(app);
-        } catch (e) {
-            console.error("Error initializing analytics:", e);
+        // Check if Firebase is already initialized
+        app = getApp();
+    } catch (e: any) {
+        if (e.code === 'app/no-app') {
+            // Initialize Firebase if it hasn't been initialized yet
+            app = initializeApp(firebaseConfig);
+        } else {
+            console.error("Error getting Firebase app:", e);
+            throw e; // Re-throw the error to prevent further initialization
         }
-        try {
-            authInstance = getAuth(app);
-        } catch (e) {
-            console.error("Error initializing auth:", e);
-        }
+    }
+    
+    try {
+        analytics = getAnalytics(app);
     } catch (e) {
-        console.error("Firebase initialization error:", e);
+        console.error("Error initializing analytics:", e);
+    }
+
+    try {
+        authInstance = getAuth(app);
+    } catch (e) {
+        console.error("Error initializing auth:", e);
     }
 } else {
-    console.warn("Missing Firebase configuration values. Firebase might not be fully initialized.");
+    console.warn("Missing Firebase configuration values. Firebase will not be initialized.");
+    // Export a placeholder for auth to prevent further errors
+    authInstance = null;
 }
 
-export const auth: Auth | null = authInstance;
+export const auth = authInstance;
