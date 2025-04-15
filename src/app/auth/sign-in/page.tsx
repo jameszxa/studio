@@ -1,4 +1,4 @@
-use client";
+"use client";
 
 import React from 'react';
 import { Button } from "@/components/ui/button"
@@ -12,6 +12,8 @@ import { toast } from "@/hooks/use-toast";
 import { Icons } from "@/components/icons";
 import { useRouter } from 'next/navigation';
 import { authenticateUser } from '@/services/user-service';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 const SignInPage = () => {
     const [isLoading, setIsLoading] = React.useState(false);
@@ -33,27 +35,28 @@ const SignInPage = () => {
       const onSignIn = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         try {
-          const user = await authenticateUser(values.email, values.password);
-          if (user) {
+          if (!auth) {
+            console.error("Firebase Auth not initialized.");
             toast({
-                title: "Sign in successfully!",
-                description: "You are now signed in.",
+              variant: "destructive",
+              title: "Error signing in.",
+              description: "Firebase Auth is not properly initialized. Please try again later.",
             });
-            router.push('/');
-          } else {
-            toast({
-                variant: "destructive",
-                title: "Error signing in.",
-                description: "Invalid credentials. Please double-check your email and password.",
-            });
+            return;
           }
+          await signInWithEmailAndPassword(auth, values.email, values.password);
+          toast({
+              title: "Sign in successfully!",
+              description: "You are now signed in.",
+          });
+          router.push('/');
         } catch (error: any) {
             console.error("Sign-in error:", error);
 
             toast({
                 variant: "destructive",
                 title: "Error signing in.",
-                description: "Failed to sign in. Please check your credentials or try again later.",
+                description: "Invalid credentials. Please double-check your email and password.",
             });
         } finally {
             setIsLoading(false);
