@@ -8,13 +8,14 @@ import {Input} from "@/components/ui/input";
 import {Search, Mic, Package, Users, ListChecks, Store, Share2, MessageSquare, HelpCircle, Wallet, ShoppingBag, Star} from 'lucide-react';
 import Link from 'next/link';
 import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 const SellerDashboardPage = () => {
   return (
-    <div className="flex h-screen bg-secondary">
+    <div className="flex h-screen bg-white text-black">
       {/* Sidebar */}
-      <div className="w-64 bg-background border-r flex flex-col">
-        <div className="p-4">
+      <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+        <div className="p-4 flex items-center space-x-2 font-semibold">
           <Link href="/" className="flex items-center space-x-2 font-semibold">
             <Avatar className="w-8 h-8">
               <AvatarImage src="/buyong_logo.png" alt="BUYong Logo"/>
@@ -25,43 +26,43 @@ const SellerDashboardPage = () => {
         </div>
 
         <div className="flex-1 p-4 space-y-1">
-          <Button variant="ghost" className="justify-start w-full font-normal" active>
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md" active>
             <ShoppingBag className="mr-2 h-4 w-4"/>
             Overview
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <Package className="mr-2 h-4 w-4"/>
             Products
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <Users className="mr-2 h-4 w-4"/>
             Customer
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <ListChecks className="mr-2 h-4 w-4"/>
             Orders
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <Share2 className="mr-2 h-4 w-4"/>
             Shipment
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <Store className="mr-2 h-4 w-4"/>
             Store Setting
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <Users className="mr-2 h-4 w-4"/>
             Platform Partner
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <MessageSquare className="mr-2 h-4 w-4"/>
             Feedback
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <HelpCircle className="mr-2 h-4 w-4"/>
             Help &amp; Support
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal">
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md">
             <Wallet className="mr-2 h-4 w-4"/>
             Withdraw
           </Button>
@@ -73,12 +74,12 @@ const SellerDashboardPage = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center">
-            <Input type="text" placeholder="Search..." className="max-w-md rounded-full"/>
+            <Input type="text" placeholder="Search..." className="max-w-md rounded-full bg-white border-gray-300"/>
             <Button variant="ghost" size="icon">
-              <Search className="h-5 w-5 text-muted-foreground"/>
+              <Search className="h-5 w-5 text-gray-500"/>
             </Button>
             <Button variant="ghost" size="icon">
-              <Mic className="h-5 w-5 text-muted-foreground"/>
+              <Mic className="h-5 w-5 text-gray-500"/>
             </Button>
           </div>
           <div className="flex items-center space-x-4">
@@ -88,7 +89,7 @@ const SellerDashboardPage = () => {
             </Avatar>
             <div>
               <div className="text-sm font-semibold">John Doe</div>
-              <div className="text-xs text-muted-foreground">john.doe@example.com</div>
+              <div className="text-xs text-gray-500">john.doe@example.com</div>
             </div>
           </div>
         </div>
@@ -96,34 +97,34 @@ const SellerDashboardPage = () => {
         {/* Welcome Section */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold">Welcome back, John!</h1>
-          <p className="text-muted-foreground">Here's Your Current Sales Overview</p>
+          <p className="text-gray-500">Here's Your Current Sales Overview</p>
         </div>
 
         {/* Sales Overview Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <Card>
+          <Card className="bg-gray-800 text-white">
             <CardHeader>
-              <CardTitle>AVG. Order Value</CardTitle>
+              <CardTitle className="text-white">AVG. Order Value</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-semibold">₱0.00</div>
-              <p className="text-sm text-muted-foreground">From last month</p>
+              <p className="text-sm text-gray-400">From last month</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gray-800 text-white">
             <CardHeader>
-              <CardTitle>Total Orders</CardTitle>
+              <CardTitle className="text-white">Total Orders</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-semibold">0.00</div>
-              <p className="text-sm text-muted-foreground">From last month</p>
+              <p className="text-sm text-gray-400">From last month</p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-gray-800 text-white">
             <CardHeader>
-              <CardTitle>Lifetime Value</CardTitle>
+              <CardTitle className="text-white">Lifetime Value</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-semibold">₱0.00</div>
@@ -139,7 +140,7 @@ const SellerDashboardPage = () => {
           </CardHeader>
           <CardContent>
             {/* Placeholder for Chart */}
-            <div className="h-48 bg-muted rounded-md flex items-center justify-center text-muted-foreground">
+            <div className="h-48 bg-gray-200 rounded-md flex items-center justify-center text-gray-500">
               Sales Chart Here
             </div>
           </CardContent>
@@ -161,7 +162,7 @@ const SellerDashboardPage = () => {
                 <div>
                   <div className="text-sm font-semibold">Red Tape Sports Shoes for Men</div>
                   <div className="text-xs text-green-500">Available</div>
-                  <div className="text-xs text-muted-foreground">135 Stocks Remaining</div>
+                  <div className="text-xs text-gray-500">135 Stocks Remaining</div>
                 </div>
               </div>
 
@@ -171,7 +172,7 @@ const SellerDashboardPage = () => {
                 <div>
                   <div className="text-sm font-semibold">Fastrack FS1 Pro Smartwatch</div>
                   <div className="text-xs text-green-500">Available</div>
-                  <div className="text-xs text-muted-foreground">76 Stocks Remaining</div>
+                  <div className="text-xs text-gray-500">76 Stocks Remaining</div>
                 </div>
               </div>
 
@@ -181,7 +182,7 @@ const SellerDashboardPage = () => {
                 <div>
                   <div className="text-sm font-semibold">Leriya Fashion Men's Shirt</div>
                   <div className="text-xs text-green-500">Available</div>
-                  <div className="text-xs text-muted-foreground">865 Stocks Remaining</div>
+                  <div className="text-xs text-gray-500">865 Stocks Remaining</div>
                 </div>
               </div>
             </div>

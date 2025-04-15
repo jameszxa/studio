@@ -45,10 +45,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button"
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, className }), active ? "data-[active=true]:bg-gray-200 data-[active=true]:font-medium data-[active=true]:text-gray-900" : "", className)}
         ref={ref}
         {...props}
-        data-active={active ? 'true' : undefined}
       />
     )
   }
@@ -56,4 +55,5 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button"
 
 export { Button, buttonVariants }
+
 
