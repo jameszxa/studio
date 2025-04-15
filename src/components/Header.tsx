@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-primary text-primary-foreground p-4 flex items-center justify-between rounded-md shadow-md">
+    <header className="bg-primary text-black p-4 flex items-center justify-between rounded-md shadow-md">
       {/* Logo */}
       <div className="flex items-center">
         <Link href="/">
@@ -60,13 +60,13 @@ const Header = () => {
           }}
         />
         <Button variant="ghost" size="icon" onClick={handleSearch}>
-          <Search className="h-5 w-5"/>
+          <Search className="h-5 w-5 text-black"/>
         </Button>
       </div>
 
       {/* User Profile Icon */}
       <Button variant="ghost" size="icon">
-        <User className="h-6 w-6"/>
+        <User className="h-6 w-6 text-black"/>
       </Button>
     </header>
   );
