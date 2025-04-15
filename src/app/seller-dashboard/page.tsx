@@ -61,10 +61,12 @@ const SellerDashboardPage = () => {
             <HelpCircle className="mr-2 h-4 w-4"/>
             Help &amp; Support
           </Button>
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
-            <Wallet className="mr-2 h-4 w-4"/>
-            Withdraw
-          </Button>
+           <Link href="/seller-dashboard/withdraw" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200" style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
+            <Button variant="ghost" className="justify-start w-full font-normal rounded-md hover:bg-yellow-200">
+              <Wallet className="mr-2 h-4 w-4" />
+              Withdraw
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -242,3 +244,4 @@ const SellerDashboardPage = () => {
 };
 
 export default SellerDashboardPage;
+
