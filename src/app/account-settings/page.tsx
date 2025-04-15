@@ -45,6 +45,14 @@ const AccountSettingsPage = () => {
     router.push('/'); // Redirect to homepage after settings are "updated"
   };
 
+  const handleLogout = () => {
+    // Clear all stored data from localStorage
+    localStorage.clear();
+
+    // Redirect the user to the sign-in page
+    router.push('/auth/sign-in');
+  };
+
   return (
     <div className="container mx-auto py-10">
       <Card className="w-[500px] mx-auto">
@@ -117,6 +125,11 @@ const AccountSettingsPage = () => {
                 Apply as a Seller!
               </Link>
             </div>
+
+            {/* Logout Button */}
+            <Button variant="destructive" onClick={handleLogout} className="mt-4">
+              Logout
+            </Button>
           </div>
         </CardContent>
       </Card>
