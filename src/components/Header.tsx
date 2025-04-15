@@ -98,7 +98,7 @@ const Header = () => {
       {/* Cart Icon */}
       <div className="flex items-center space-x-2">
         <div className="relative">
-          <Button variant="ghost" size="icon" asChild>
+          <Button variant="ghost" size="icon" asChild className="hover:underline">
             <Link href="/checkout">
               <ShoppingCart className="h-6 w-6 text-black"/>
             </Link>
@@ -111,7 +111,7 @@ const Header = () => {
         </div>
 
         {/* User Profile Icon */}
-        <Button variant="ghost" size="icon" asChild>
+        <Button variant="ghost" size="icon" asChild className="hover:underline">
           <Link href="/account-settings">
             <User className="h-6 w-6 text-black"/>
           </Link>
@@ -122,4 +122,3 @@ const Header = () => {
 };
 
 export default Header;
-
