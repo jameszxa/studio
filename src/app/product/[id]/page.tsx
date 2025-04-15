@@ -7,7 +7,7 @@ import {suggestSimilarProducts, SuggestSimilarProductsOutput} from '@/ai/flows/s
 import {Button} from '@/components/ui/button';
 import {Icons} from '@/components/icons';
 import {Input} from '@/components/ui/input';
-import {ShoppingCart} from 'lucide-react';
+import {ShoppingCart, Star} from 'lucide-react';
 
 interface Product {
   id: string;
@@ -121,7 +121,7 @@ const ProductDetailPage = () => {
               <div className="flex items-center mb-2">
                 {/* Assuming a 5-star rating */}
                 {[...Array(5)].map((_, i) => (
-                  <Icons.star key={i} className="h-5 w-5 text-yellow-500"/>
+                  <Star key={i} className="h-5 w-5 text-yellow-500"/>
                 ))}
                 <span className="text-muted-foreground ml-2">(150 Reviews)</span>
                 <span className="text-green-500 ml-2">In Stock</span>
