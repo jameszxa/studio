@@ -49,6 +49,7 @@ const CreateAccountPage = () => {
             title: "Error creating account.",
             description: "Firebase Auth is not properly initialized. Please try again later.",
           });
+          setIsLoading(false);
           return;
         }
         await createUserWithEmailAndPassword(auth, values.email, values.password);

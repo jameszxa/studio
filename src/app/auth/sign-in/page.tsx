@@ -42,6 +42,7 @@ const SignInPage = () => {
               title: "Error signing in.",
               description: "Firebase Auth is not properly initialized. Please try again later.",
             });
+            setIsLoading(false);
             return;
           }
           await signInWithEmailAndPassword(auth, values.email, values.password);
