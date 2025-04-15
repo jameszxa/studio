@@ -1,45 +1,55 @@
-'use client';
+"use client";
 
 import React from 'react';
-import {Button} from '@/components/ui/button';
-import {useRouter} from 'next/navigation';
-import {Input} from '@/components/ui/input';
-import {Card, CardHeader, CardTitle, CardDescription, CardContent} from '@/components/ui/card';
+import { useRouter } from 'next/navigation';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import { cn } from "@/lib/utils";
 
 const AccountSettingsPage = () => {
   const router = useRouter();
   const [profileName, setProfileName] = React.useState('');
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [address, setAddress] = React.useState('');
   const [phoneNumber, setPhoneNumber] = React.useState('');
+  const [address, setAddress] = React.useState('');
+  const [currentPassword, setCurrentPassword] = React.useState('');
+  const [newPassword, setNewPassword] = React.useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = React.useState('');
 
   React.useEffect(() => {
     // Retrieve user data from localStorage or a similar state management solution
-    const storedProfileName = localStorage.getItem('profileName') || '';
+    const storedFirstName = localStorage.getItem('firstName') || '';
+    const storedLastName = localStorage.getItem('lastName') || '';
     const storedEmail = localStorage.getItem('email') || '';
-    const storedAddress = localStorage.getItem('address') || '';
     const storedPhoneNumber = localStorage.getItem('phoneNumber') || '';
+    const storedAddress = localStorage.getItem('address') || '';
 
     // Update the state with the retrieved values
-    setProfileName(storedProfileName);
+    setFirstName(storedFirstName);
+    setLastName(storedLastName);
     setEmail(storedEmail);
-    setAddress(storedAddress);
     setPhoneNumber(storedPhoneNumber);
+    setAddress(storedAddress);
   }, []);
 
   const handleSettingsUpdate = () => {
     // Store the settings in localStorage or a similar state management solution
-    localStorage.setItem('profileName', profileName);
+    localStorage.setItem('firstName', firstName);
+    localStorage.setItem('lastName', lastName);
     localStorage.setItem('email', email);
-    localStorage.setItem('address', address);
     localStorage.setItem('phoneNumber', phoneNumber);
+    localStorage.setItem('address', address);
 
     console.log('Settings updated:', {
-      profileName,
+      firstName,
+      lastName,
       email,
-      address,
       phoneNumber,
+      address,
     });
     alert('Settings updated!');
     router.push('/'); // Redirect to homepage after settings are "updated"
@@ -55,84 +65,176 @@ const AccountSettingsPage = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <Card className="w-[500px] mx-auto">
-        <CardHeader>
-          <CardTitle>Account Settings</CardTitle>
-          <CardDescription>Customize your account settings here.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4">
-            {/* Profile Name */}
-            <div className="grid gap-2">
-              <label htmlFor="profileName" className="text-sm font-medium leading-none">
-                Profile Name
-              </label>
-              <Input
-                type="text"
-                id="profileName"
-                placeholder="Your Name"
-                value={profileName}
-                onChange={e => setProfileName(e.target.value)}
-              />
-            </div>
-
-            {/* Email Address */}
-            <div className="grid gap-2">
-              <label htmlFor="email" className="text-sm font-medium leading-none">
-                Email Address
-              </label>
-              <Input
-                type="email"
-                id="email"
-                placeholder="m@example.com"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-            </div>
-
-            {/* Address */}
-            <div className="grid gap-2">
-              <label htmlFor="address" className="text-sm font-medium leading-none">
-                Address
-              </label>
-              <Input
-                type="text"
-                id="address"
-                placeholder="Your Address"
-                value={address}
-                onChange={e => setAddress(e.target.value)}
-              />
-            </div>
-
-            {/* Phone Number */}
-            <div className="grid gap-2">
-              <label htmlFor="phoneNumber" className="text-sm font-medium leading-none">
-                Phone Number
-              </label>
-              <Input
-                type="tel"
-                id="phoneNumber"
-                placeholder="Your Phone Number"
-                value={phoneNumber}
-                onChange={e => setPhoneNumber(e.target.value)}
-              />
-            </div>
-
-            {/* Update Settings Button */}
-            <Button onClick={handleSettingsUpdate}>Update Settings</Button>
-            <div className="mt-4">
+      <div className="flex">
+        {/* Sidebar Navigation */}
+        <div className="w-1/4 pr-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Manage My Account</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Link href="#" className="block hover:underline">My Profile</Link>
+              <Link href="#" className="block hover:underline">Address Book</Link>
+              <Link href="#" className="block hover:underline">My Payment Options</Link>
+            </CardContent>
+          </Card>
+          <Card className="mt-4">
+            <CardHeader>
+              <CardTitle>My Orders</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Link href="#" className="block hover:underline">My Returns</Link>
+              <Link href="#" className="block hover:underline">My Cancellations</Link>
+            </CardContent>
+          </Card>
+          <Card className="mt-4">
+            <CardHeader>
+              <CardTitle>My Wishlist</CardTitle>
+            </CardHeader>
+            <CardContent>
               <Link href="/apply-seller" className="text-sm text-primary hover:underline">
-                Apply as a Seller!
+                Apply As a Seller!
               </Link>
-            </div>
+            </CardContent>
+          </Card>
+        </div>
 
-            {/* Logout Button */}
-            <Button variant="destructive" onClick={handleLogout} className="mt-4">
-              Logout
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+        {/* Edit Your Profile Section */}
+        <div className="w-3/4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Edit Your Profile</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                {/* First Name */}
+                <div className="grid gap-2">
+                  <label htmlFor="firstName" className="text-sm font-medium leading-none">
+                    First Name
+                  </label>
+                  <Input
+                    type="text"
+                    id="firstName"
+                    placeholder="John"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                  />
+                </div>
+
+                {/* Last Name */}
+                <div className="grid gap-2">
+                  <label htmlFor="lastName" className="text-sm font-medium leading-none">
+                    Last Name
+                  </label>
+                  <Input
+                    type="text"
+                    id="lastName"
+                    placeholder="Doe"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* Email Address */}
+              <div className="grid gap-2">
+                <label htmlFor="email" className="text-sm font-medium leading-none">
+                  Email Address
+                </label>
+                <Input
+                  type="email"
+                  id="email"
+                  placeholder="m@example.com"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                />
+              </div>
+
+              {/* Phone Number */}
+              <div className="grid gap-2">
+                <label htmlFor="phoneNumber" className="text-sm font-medium leading-none">
+                  Phone Number
+                </label>
+                <Input
+                  type="tel"
+                  id="phoneNumber"
+                  placeholder="+63 912 345 6789"
+                  value={phoneNumber}
+                  onChange={e => setPhoneNumber(e.target.value)}
+                />
+              </div>
+
+              {/* Address */}
+              <div className="grid gap-2">
+                <label htmlFor="address" className="text-sm font-medium leading-none">
+                  Address
+                </label>
+                <Input
+                  type="text"
+                  id="address"
+                  placeholder="Lapasan, Cagayan de Oro, 9000 Misamis Oriental"
+                  value={address}
+                  onChange={e => setAddress(e.target.value)}
+                />
+              </div>
+
+              {/* Password Changes */}
+              <div className="grid gap-2">
+                <label htmlFor="currentPassword" className="text-sm font-medium leading-none">
+                  Current Password
+                </label>
+                <Input
+                  type="password"
+                  id="currentPassword"
+                  placeholder="Current Password"
+                  value={currentPassword}
+                  onChange={e => setCurrentPassword(e.target.value)}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                  <label htmlFor="newPassword" className="text-sm font-medium leading-none">
+                    New Password
+                  </label>
+                  <Input
+                    type="password"
+                    id="newPassword"
+                    placeholder="New Password"
+                    value={newPassword}
+                    onChange={e => setNewPassword(e.target.value)}
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <label htmlFor="confirmNewPassword" className="text-sm font-medium leading-none">
+                    Confirm New Password
+                  </label>
+                  <Input
+                    type="password"
+                    id="confirmNewPassword"
+                    placeholder="Confirm New Password"
+                    value={confirmNewPassword}
+                    onChange={e => setConfirmNewPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* Save Changes Button */}
+              <div className="flex justify-end gap-2">
+                <Button type="button" variant="ghost">
+                  Cancel
+                </Button>
+                <Button onClick={handleSettingsUpdate}>Save Changes</Button>
+              </div>
+            </CardContent>
+          </Card>
+              {/* Logout Button */}
+              <Button variant="destructive" onClick={handleLogout} className="mt-4">
+                Logout
+              </Button>
+        </div>
+      </div>
     </div>
   );
 };
