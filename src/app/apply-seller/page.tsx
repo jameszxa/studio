@@ -12,6 +12,7 @@ import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   storeName: z.string().min(2, {message: "Store name must be at least 2 characters."}),
@@ -72,6 +73,7 @@ const ApplySellerPage = () => {
   const termsAndConditions = watch("termsAndConditions");
   const storeVisibility = watch("storeVisibility");
   const storeCategories = watch("storeCategories");
+    const router = useRouter();
 
   useEffect(() => {
     // You can load data from localStorage or a similar state management solution here
@@ -103,6 +105,7 @@ const ApplySellerPage = () => {
     // Logic to submit the application
     console.log('Application submitted!', data);
     alert('Application submitted!');
+        router.push('/seller-dashboard'); // Redirect to seller dashboard after submission
   };
 
   return (
