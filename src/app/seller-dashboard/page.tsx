@@ -5,10 +5,9 @@ import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Input} from "@/components/ui/input";
-import {Search, Mic, Package, Users, ListChecks, Store, Share2, MessageSquare, HelpCircle, Wallet, ShoppingBag, Star} from 'lucide-react';
+import {Search, Mic, Package, Users, ListChecks, Store, Share2, MessageSquare, HelpCircle, Wallet, ShoppingBag} from 'lucide-react';
 import Link from 'next/link';
 import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
-import { cn } from "@/lib/utils";
 
 const SellerDashboardPage = () => {
   return (
@@ -26,7 +25,7 @@ const SellerDashboardPage = () => {
         </div>
 
         <div className="flex-1 p-4 space-y-1">
-          <Button variant="ghost" className="justify-start w-full font-normal rounded-md" active>
+          <Button variant="ghost" className="justify-start w-full font-normal rounded-md" data-active="true">
             <ShoppingBag className="mr-2 h-4 w-4"/>
             Overview
           </Button>
@@ -133,61 +132,64 @@ const SellerDashboardPage = () => {
           </Card>
         </div>
 
-        {/* Sales Overtime Chart */}
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle>Sales Overtime</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Placeholder for Chart */}
-            <div className="h-48 bg-gray-200 rounded-md flex items-center justify-center text-gray-500">
-              Sales Chart Here
-            </div>
-          </CardContent>
-        </Card>
+        {/* Sales Overtime Chart and Available Products */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+          {/* Sales Overtime Chart */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Sales Overtime</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {/* Placeholder for Chart */}
+              <div className="h-48 bg-gray-200 rounded-md flex items-center justify-center text-gray-500">
+                Sales Chart Here
+              </div>
+            </CardContent>
+          </Card>
 
-        {/* Available Products */}
-        <Card className="mb-6">
-          <CardHeader>
-            <div className="flex justify-between items-center">
-              <CardTitle>Available Products</CardTitle>
-              <Link href="#" className="text-sm text-primary">See All Product</Link>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Product 1 */}
-              <div className="flex items-center space-x-4">
-                <img src="https://i.pravatar.cc/50?img=1" alt="Product" className="w-12 h-12 rounded-md"/>
-                <div>
-                  <div className="text-sm font-semibold">Red Tape Sports Shoes for Men</div>
-                  <div className="text-xs text-green-500">Available</div>
-                  <div className="text-xs text-gray-500">135 Stocks Remaining</div>
+          {/* Available Products */}
+          <Card>
+            <CardHeader>
+              <div className="flex justify-between items-center">
+                <CardTitle>Available Products</CardTitle>
+                <Link href="#" className="text-sm text-primary">See All Product</Link>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Product 1 */}
+                <div className="flex items-center space-x-4">
+                  <img src="https://i.pravatar.cc/50?img=1" alt="Product" className="w-12 h-12 rounded-md"/>
+                  <div>
+                    <div className="text-sm font-semibold">Red Tape Sports Shoes for Men</div>
+                    <div className="text-xs text-green-500">Available</div>
+                    <div className="text-xs text-gray-500">135 Stocks Remaining</div>
+                  </div>
+                </div>
+
+                {/* Product 2 */}
+                <div className="flex items-center space-x-4">
+                  <img src="https://i.pravatar.cc/50?img=2" alt="Product" className="w-12 h-12 rounded-md"/>
+                  <div>
+                    <div className="text-sm font-semibold">Fastrack FS1 Pro Smartwatch</div>
+                    <div className="text-xs text-green-500">Available</div>
+                    <div className="text-xs text-gray-500">76 Stocks Remaining</div>
+                  </div>
+                </div>
+
+                {/* Product 3 */}
+                <div className="flex items-center space-x-4">
+                  <img src="https://i.pravatar.cc/50?img=3" alt="Product" className="w-12 h-12 rounded-md"/>
+                  <div>
+                    <div className="text-sm font-semibold">Leriya Fashion Men's Shirt</div>
+                    <div className="text-xs text-green-500">Available</div>
+                    <div className="text-xs text-gray-500">865 Stocks Remaining</div>
+                  </div>
                 </div>
               </div>
-
-              {/* Product 2 */}
-              <div className="flex items-center space-x-4">
-                <img src="https://i.pravatar.cc/50?img=2" alt="Product" className="w-12 h-12 rounded-md"/>
-                <div>
-                  <div className="text-sm font-semibold">Fastrack FS1 Pro Smartwatch</div>
-                  <div className="text-xs text-green-500">Available</div>
-                  <div className="text-xs text-gray-500">76 Stocks Remaining</div>
-                </div>
-              </div>
-
-              {/* Product 3 */}
-              <div className="flex items-center space-x-4">
-                <img src="https://i.pravatar.cc/50?img=3" alt="Product" className="w-12 h-12 rounded-md"/>
-                <div>
-                  <div className="text-sm font-semibold">Leriya Fashion Men's Shirt</div>
-                  <div className="text-xs text-green-500">Available</div>
-                  <div className="text-xs text-gray-500">865 Stocks Remaining</div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Latest Orders */}
         <Card>
