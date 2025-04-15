@@ -2,6 +2,7 @@
 
 import {useState, useEffect} from 'react';
 import {useParams, useSearchParams} from 'next/navigation';
+import {useRouter} from 'next/navigation';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {suggestSimilarProducts, SuggestSimilarProductsOutput} from '@/ai/flows/suggest-similar-products';
 import {Button} from '@/components/ui/button';
@@ -31,6 +32,7 @@ const ProductDetailPage = () => {
   const searchParams = useSearchParams();
   const searchTerm = searchParams.get('searchTerm') || '';
   const [quantity, setQuantity] = useState(1);
+  const router = useRouter();
 
   // Mock store data
   const [store, setStore] = useState<Store>({
@@ -98,6 +100,17 @@ const ProductDetailPage = () => {
     localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
 
     alert(`${quantity} of ${product?.name} added to cart!`);
+  };
+
+  const handleBuyNow = () => {
+    // Create a cart item
+    const cartItem = {...product, quantity};
+
+    // Store the cart item in local storage
+    localStorage.setItem('cartItems', JSON.stringify([cartItem]));
+
+    // Redirect to the checkout page
+    router.push('/checkout');
   };
 
   const handleQuantityChange = (change: number) => {
@@ -173,10 +186,15 @@ const ProductDetailPage = () => {
               </div>
 
               {/* Add to Cart Button */}
-              <Button className="w-full" onClick={handleAddToCart}>
-                <ShoppingCart className="w-4 h-4 mr-2"/>
-                Add to cart
-              </Button>
+              <div className="flex gap-2">
+                <Button className="w-1/2" onClick={handleAddToCart}>
+                  <ShoppingCart className="w-4 h-4 mr-2"/>
+                  Add to cart
+                </Button>
+                <Button className="w-1/2" onClick={handleBuyNow}>
+                  Buy Now
+                </Button>
+              </div>
 
               {/* Delivery and Return Information */}
               <div className="mt-6 border rounded-md p-4">
