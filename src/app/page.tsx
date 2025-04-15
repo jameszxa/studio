@@ -6,6 +6,7 @@ import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/compo
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Icons} from '@/components/icons';
+import React from "react";
 
 interface Product {
   id: string;
@@ -15,6 +16,7 @@ interface Product {
   image: string;
   category: string;
   location: string;
+  storeId: string;
 }
 
 const Home = () => {
@@ -81,7 +83,19 @@ const Home = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      {/* Flash Sales Section */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Flash Sales</h2>
+        {/* Add Flash Sales component here */}
+        <p>Flash sales content will be here</p>
+      </section>
+
+      {/* New Arrival Section */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">New Arrivals</h2>
+        {/* Add New Arrivals component here */}
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map(product => (
           <Card key={product.id} className="cursor-pointer" onClick={() => handleProductClick(product.id)}>
             <CardHeader>
@@ -95,7 +109,7 @@ const Home = () => {
           </Card>
         ))}
       </div>
-       {products.length === 0 && (
+          {products.length === 0 && (
           <div className="text-center mt-4">
             <Icons.loader className="h-6 w-6 animate-spin mx-auto mb-2" />
             <p>Loading products...</p>
@@ -107,6 +121,7 @@ const Home = () => {
             <p>No products found matching your search.</p>
           </div>
         )}
+      </section>
     </div>
   );
 };
