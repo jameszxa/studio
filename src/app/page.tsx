@@ -1,7 +1,7 @@
 'use client';
 
 import {useState, useEffect} from 'react';
-import {useRouter} from 'next/navigation';
+import {useRouter, useSearchParams} from 'next/navigation';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
@@ -21,6 +21,7 @@ const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -41,13 +42,18 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    const searchTermParam = searchParams.get('searchTerm') || '';
+    setSearchTerm(searchTermParam);
+  }, [searchParams]);
+
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleProductClick = (id: string) => {
-    router.push(`/product/${id}`);
+    router.push(`/product/${id}?searchTerm=${searchTerm}`);
   };
 
   return (
@@ -106,6 +112,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-    

@@ -1,4 +1,3 @@
-// src/ai/flows/suggest-similar-products.ts
 'use server';
 /**
  * @fileOverview AI-powered suggestions for similar products based on the product I am currently viewing.
@@ -15,6 +14,7 @@ const SuggestSimilarProductsInputSchema = z.object({
   productName: z.string().describe('The name of the product.'),
   productDescription: z.string().describe('The description of the product.'),
   productCategory: z.string().describe('The category of the product.'),
+  searchTerm: z.string().optional().describe('The search term used by the user.'),
 });
 export type SuggestSimilarProductsInput = z.infer<typeof SuggestSimilarProductsInputSchema>;
 
@@ -40,6 +40,7 @@ const prompt = ai.definePrompt({
       productName: z.string().describe('The name of the product.'),
       productDescription: z.string().describe('The description of the product.'),
       productCategory: z.string().describe('The category of the product.'),
+      searchTerm: z.string().optional().describe('The search term used by the user.'),
     }),
   },
   output: {
@@ -61,6 +62,9 @@ const prompt = ai.definePrompt({
   Product Name: {{{productName}}}
   Product Description: {{{productDescription}}}
   Product Category: {{{productCategory}}}
+  ${'{{#if searchTerm}}'}
+  Search Term: {{{searchTerm}}}
+  ${'{{/if}}'}
 
   Consider these factors when determining similarity:
   - Category: Products in the same category are more likely to be similar.
@@ -86,4 +90,3 @@ const suggestSimilarProductsFlow = ai.defineFlow<
   const {output} = await prompt(input);
   return output!;
 });
-

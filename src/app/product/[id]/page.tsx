@@ -1,7 +1,7 @@
 'use client';
 
 import {useState, useEffect} from 'react';
-import {useParams} from 'next/navigation';
+import {useParams, useSearchParams} from 'next/navigation';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {suggestSimilarProducts, SuggestSimilarProductsOutput} from '@/ai/flows/suggest-similar-products';
 import {Button} from '@/components/ui/button';
@@ -21,6 +21,8 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [similarProducts, setSimilarProducts] = useState<SuggestSimilarProductsOutput | null>(null);
   const {id} = useParams<{ id: string }>();
+  const searchParams = useSearchParams();
+  const searchTerm = searchParams.get('searchTerm') || '';
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -48,6 +50,7 @@ const ProductDetailPage = () => {
             productName: product.name,
             productDescription: product.description,
             productCategory: product.category,
+            searchTerm: searchTerm,
           });
           setSimilarProducts(aiResponse);
         } catch (error) {
@@ -59,7 +62,7 @@ const ProductDetailPage = () => {
     if (product) {
       fetchSimilarProducts();
     }
-  }, [product]);
+  }, [product, searchTerm]);
 
   if (!product) {
     return (
@@ -119,5 +122,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-
-    
