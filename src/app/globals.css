@@ -50,7 +50,7 @@ body {
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 48 100% 60%; /* FFAD33 */
-    --primary-foreground: 180 100% 25%; /* Deep Teal */
+    --primary-foreground: #000000;
     --secondary: 0 0% 14.9%; /* Light Gray */
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
