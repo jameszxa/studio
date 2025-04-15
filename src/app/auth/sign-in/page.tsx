@@ -11,7 +11,6 @@ import * as z from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Icons } from "@/components/icons";
 import { useRouter } from 'next/navigation';
-import { authenticateUser } from '@/services/user-service';
 
 const SignInPage = () => {
     const [isLoading, setIsLoading] = React.useState(false);
@@ -33,20 +32,27 @@ const SignInPage = () => {
       const onSignIn = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         try {
-          const user = await authenticateUser(values.email, values.password);
-          if (user) {
-            toast({
-                title: "Sign in successfully!",
-                description: "You are now signed in.",
-            });
-            router.push('/');
-          } else {
-            toast({
-                variant: "destructive",
-                title: "Error signing in.",
-                description: "Invalid credentials. Please double-check your email and password.",
-            });
-          }
+            // Simulate authentication by checking if the email exists in local storage
+            const storedEmail = localStorage.getItem('email');
+
+            if (values.email === storedEmail) {
+                toast({
+                    title: "Sign in successfully!",
+                    description: "You are now signed in.",
+                });
+
+                // Set a signed-in flag or store user data in localStorage
+                localStorage.setItem('isSignedIn', 'true');
+                localStorage.setItem('email', values.email);
+
+                router.push('/');
+            } else {
+                toast({
+                    variant: "destructive",
+                    title: "Error signing in.",
+                    description: "Invalid credentials. Please double-check your email and password.",
+                });
+            }
         } catch (error: any) {
             console.error("Sign-in error:", error);
 
