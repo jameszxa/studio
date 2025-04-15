@@ -62,18 +62,20 @@ const Header = () => {
       </div>
 
       {/* Cart Icon */}
-      <Button variant="ghost" size="icon" asChild>
-        <Link href="/checkout">
-          <ShoppingCart className="h-6 w-6 text-black"/>
-        </Link>
-      </Button>
+      <div className="flex items-center space-x-2">
+        <Button variant="ghost" size="icon" asChild>
+          <Link href="/checkout">
+            <ShoppingCart className="h-6 w-6 text-black"/>
+          </Link>
+        </Button>
 
-      {/* User Profile Icon */}
-      <Button variant="ghost" size="icon" asChild>
-        <Link href="/account-settings">
-          <User className="h-6 w-6 text-black"/>
-        </Link>
-      </Button>
+        {/* User Profile Icon */}
+        <Button variant="ghost" size="icon" asChild>
+          <Link href="/account-settings">
+            <User className="h-6 w-6 text-black"/>
+          </Link>
+        </Button>
+      </div>
     </header>
   );
 };
