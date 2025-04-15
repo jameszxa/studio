@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Search, User, ShoppingCart} from 'lucide-react';
@@ -10,6 +10,40 @@ import {useRouter} from 'next/navigation';
 const Header = () => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = React.useState('');
+  const [cartItemCount, setCartItemCount] = useState(0);
+
+  useEffect(() => {
+    // Load cart items from local storage
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      const parsedCartItems = JSON.parse(storedCartItems);
+      let count = 0;
+      parsedCartItems.forEach((item: any) => {
+        count += item.quantity;
+      });
+      setCartItemCount(count);
+    }
+
+    const handleCartUpdate = () => {
+      const storedCartItems = localStorage.getItem('cartItems');
+      if (storedCartItems) {
+        const parsedCartItems = JSON.parse(storedCartItems);
+        let count = 0;
+        parsedCartItems.forEach((item: any) => {
+          count += item.quantity;
+        });
+        setCartItemCount(count);
+      } else {
+        setCartItemCount(0);
+      }
+    };
+
+    window.addEventListener('cartUpdated', handleCartUpdate);
+
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
+  }, []);
 
   const handleSearch = () => {
     if (searchTerm) {
@@ -62,12 +96,17 @@ const Header = () => {
       </div>
 
       {/* Cart Icon */}
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-2 relative">
         <Button variant="ghost" size="icon" asChild>
           <Link href="/checkout">
             <ShoppingCart className="h-6 w-6 text-black"/>
           </Link>
         </Button>
+        {cartItemCount > 0 && (
+          <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-1 py-0.5">
+            {cartItemCount}
+          </span>
+        )}
 
         {/* User Profile Icon */}
         <Button variant="ghost" size="icon" asChild>

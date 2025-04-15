@@ -9,6 +9,7 @@ import {Button} from '@/components/ui/button';
 import {Icons} from '@/components/icons';
 import {Input} from '@/components/ui/input';
 import {ShoppingCart, Star} from 'lucide-react';
+import { useToast } from "@/hooks/use-toast"
 
 interface Product {
   id: string;
@@ -33,6 +34,7 @@ const ProductDetailPage = () => {
   const searchTerm = searchParams.get('searchTerm') || '';
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
+    const {toast} = useToast()
 
   // Mock store data
   const [store, setStore] = useState<Store>({
@@ -98,20 +100,25 @@ const ProductDetailPage = () => {
 
     // Store the updated cart items in local storage
     localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
-
-    alert(`${quantity} of ${product?.name} added to cart!`);
+        // Trigger a re-render of the header to update the cart count
+        window.dispatchEvent(new Event('cartUpdated'));
+         toast({
+            title: "Success",
+            description: `${quantity} of ${product?.name} added to cart!`,
+          })
   };
 
-  const handleBuyNow = () => {
-    // Create a cart item
-    const cartItem = {...product, quantity};
+   const handleBuyNow = () => {
+        // Create a cart item
+        const cartItem = { ...product, quantity };
 
-    // Store the cart item in local storage
-    localStorage.setItem('cartItems', JSON.stringify([cartItem]));
+        // Store the cart item in local storage
+        localStorage.setItem('cartItems', JSON.stringify([cartItem]));
 
-    // Redirect to the checkout page
-    router.push('/checkout');
-  };
+        // Redirect to the checkout page with quantity as a query parameter
+        router.push(`/checkout?quantity=${quantity}`);
+    };
+
 
   const handleQuantityChange = (change: number) => {
     const newQuantity = Math.max(1, quantity + change);
@@ -187,9 +194,9 @@ const ProductDetailPage = () => {
 
               {/* Add to Cart Button */}
               <div className="flex gap-2">
-                <Button className="w-1/2" onClick={handleBuyNow}>
-                  Buy Now
-                </Button>
+                 <Button className="w-1/2" onClick={handleBuyNow}>
+                    Buy Now
+                  </Button>
                 <Button className="w-1/2" onClick={handleAddToCart}>
                   <ShoppingCart className="w-4 h-4 mr-2"/>
                   Add to cart
