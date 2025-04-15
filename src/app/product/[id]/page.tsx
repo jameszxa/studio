@@ -6,6 +6,8 @@ import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/compo
 import {suggestSimilarProducts, SuggestSimilarProductsOutput} from '@/ai/flows/suggest-similar-products';
 import {Button} from '@/components/ui/button';
 import {Icons} from '@/components/icons';
+import {Input} from '@/components/ui/input';
+import {ShoppingCart} from 'lucide-react';
 
 interface Product {
   id: string;
@@ -28,6 +30,7 @@ const ProductDetailPage = () => {
   const {id} = useParams<{ id: string }>();
   const searchParams = useSearchParams();
   const searchTerm = searchParams.get('searchTerm') || '';
+  const [quantity, setQuantity] = useState(1);
 
   // Mock store data
   const [store, setStore] = useState<Store>({
@@ -75,11 +78,21 @@ const ProductDetailPage = () => {
     }
   }, [product, searchTerm]);
 
+  const handleAddToCart = () => {
+    //Basic "add to cart" logic
+    alert(`${quantity} of ${product?.name} added to cart!`);
+  };
+
+  const handleQuantityChange = (change: number) => {
+    const newQuantity = Math.max(1, quantity + change);
+    setQuantity(newQuantity);
+  };
+
   if (!product) {
     return (
       <div className="container mx-auto py-10">
         <div className="text-center mt-4">
-          <Icons.loader className="h-6 w-6 animate-spin mx-auto mb-2" />
+          <Icons.loader className="h-6 w-6 animate-spin mx-auto mb-2"/>
           <p>Loading product details...</p>
         </div>
       </div>
@@ -88,18 +101,94 @@ const ProductDetailPage = () => {
 
   return (
     <div className="container mx-auto py-10">
-      
-      <Card>
-        <CardHeader>
-          <CardTitle>{product.name}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <img src={product.image} alt={product.name} className="rounded-md mb-4 w-full h-64 object-cover"/>
-          <CardDescription>{product.description}</CardDescription>
-          <div className="font-bold text-primary mt-4">PHP {product.price.toFixed(2)}</div>
-          <div className="text-sm text-muted-foreground mt-2">Location: {product.location}</div>
-        </CardContent>
-      </Card>
+
+      {/* Product Details */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Product Image Carousel */}
+        <div>
+          <img src={product.image} alt={product.name}
+            className="rounded-md mb-4 w-full h-96 object-cover"/>
+          {/* Add more images here for a carousel effect */}
+        </div>
+
+        {/* Product Information */}
+        <div>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold">{product.name}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center mb-2">
+                {/* Assuming a 5-star rating */}
+                {[...Array(5)].map((_, i) => (
+                  <Icons.star key={i} className="h-5 w-5 text-yellow-500"/>
+                ))}
+                <span className="text-muted-foreground ml-2">(150 Reviews)</span>
+                <span className="text-green-500 ml-2">In Stock</span>
+              </div>
+
+              <div className="text-3xl font-bold text-primary mb-4">PHP {product.price.toFixed(2)}</div>
+
+              <CardDescription className="mb-4">{product.description}</CardDescription>
+
+              {/* Color Options (Example) */}
+              <div className="mb-4">
+                <div className="font-semibold">Colors:</div>
+                <div className="flex items-center mt-2">
+                  <div className="w-6 h-6 rounded-full bg-blue-500 mr-2 cursor-pointer"></div>
+                  <div className="w-6 h-6 rounded-full bg-red-500 mr-2 cursor-pointer"></div>
+                  {/* Add more color options */}
+                </div>
+              </div>
+
+              {/* Quantity Selection */}
+              <div className="flex items-center mb-4">
+                <div className="font-semibold mr-2">Quantity:</div>
+                <div className="flex items-center">
+                  <Button variant="outline" size="icon" onClick={() => handleQuantityChange(-1)}>
+                    -
+                  </Button>
+                  <Input
+                    type="number"
+                    className="w-16 text-center mx-2"
+                    value={quantity}
+                    onChange={(e) => {
+                      const newQuantity = parseInt(e.target.value);
+                      if (!isNaN(newQuantity)) {
+                        setQuantity(Math.max(1, newQuantity));
+                      }
+                    }}
+                  />
+                  <Button variant="outline" size="icon" onClick={() => handleQuantityChange(1)}>
+                    +
+                  </Button>
+                </div>
+              </div>
+
+              {/* Add to Cart Button */}
+              <Button className="w-full" onClick={handleAddToCart}>
+                <ShoppingCart className="w-4 h-4 mr-2"/>
+                Add to cart
+              </Button>
+
+              {/* Delivery and Return Information */}
+              <div className="mt-6 border rounded-md p-4">
+                <div className="flex items-center mb-2">
+                  <Icons.delivery className="w-5 h-5 mr-2 text-muted-foreground"/>
+                  <span className="font-semibold">Free Delivery</span>
+                </div>
+                <div className="text-sm text-muted-foreground mb-2">Enter your postal code for Delivery Availability</div>
+                <div className="flex items-center">
+                  <Icons.returnIcon className="w-5 h-5 mr-2 text-muted-foreground"/>
+                  <span className="font-semibold">Return Delivery</span>
+                </div>
+                <div className="text-sm text-muted-foreground">Free 30 Days Delivery Returns. <a href="#"
+                  className="text-primary">Details</a></div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
       {/* Store Banner */}
       <div className="bg-secondary rounded-md shadow-md p-4 mt-4">
@@ -107,8 +196,7 @@ const ProductDetailPage = () => {
           <img
             src={store.image}
             alt={store.name}
-            className="rounded-full w-20 h-20 object-cover mr-4"
-          />
+            className="rounded-full w-20 h-20 object-cover mr-4"/>
           <div>
             <h2 className="text-xl font-semibold">{store.name}</h2>
             <Button size="sm" onClick={() => alert('Visit store functionality coming soon!')}>
@@ -139,12 +227,12 @@ const ProductDetailPage = () => {
         ) : (
           <p>No similar products found.</p>
         )}
-         {!similarProducts && (
-            <div className="text-center mt-4">
-              <Icons.loader className="h-6 w-6 animate-spin mx-auto mb-2" />
-              <p>Loading similar products...</p>
-            </div>
-          )}
+        {!similarProducts && (
+          <div className="text-center mt-4">
+            <Icons.loader className="h-6 w-6 animate-spin mx-auto mb-2"/>
+            <p>Loading similar products...</p>
+          </div>
+        )}
       </div>
     </div>
   );
