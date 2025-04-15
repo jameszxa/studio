@@ -49,6 +49,20 @@ const Home = () => {
 
   return (
     <div className="container mx-auto py-10">
+      {/* Welcome Banner */}
+      <div className="relative w-full mb-8 rounded-md overflow-hidden shadow-md">
+        <img
+          src="https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU" // Replace with your sale banner image
+          alt="Sale Event"
+          className="w-full h-64 object-cover"
+        />
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+          <h2 className="text-4xl font-bold text-primary-foreground">Welcome to BUYong!</h2>
+          <p className="text-lg text-primary-foreground">Discover amazing deals on local Filipino products.</p>
+        </div>
+      </div>
+
       <div className="mb-8 flex justify-center">
         <Input
           type="text"
@@ -89,3 +103,4 @@ const Home = () => {
 };
 
 export default Home;
+
