@@ -21,8 +21,15 @@ const CreateAccountPage = () => {
     const router = useRouter();
 
     const formSchema = z.object({
-        email: z.string().email({ message: "Please enter a valid email address." }),
-        password: z.string().min(8, { message: "Password must be at least 8 characters." }),
+      email: z.string().email({ message: "Please enter a valid email address." }),
+      password: z.string().min(8, { message: "Password must be at least 8 characters." })
+        .refine((password) => {
+          const hasNumber = /\d/.test(password);
+          const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+          return hasNumber && hasSpecialChar;
+        }, {
+          message: "Password must contain at least one number and one special character.",
+        }),
     });
 
     const {
