@@ -10,7 +10,7 @@ const Header = () => {
     <header className="bg-primary text-primary-foreground p-4 flex items-center justify-between rounded-md shadow-md">
       {/* Logo */}
       <div className="flex items-center">
-        <img src="https://placehold.co/40x40" alt="BUYong Logo" className="mr-2 rounded-full"/>
+        <img src="/buyong_logo.png" alt="BUYong Logo" className="mr-2 rounded-full w-10 h-10"/>
         <span className="text-2xl font-bold">BUYong</span>
       </div>
 
