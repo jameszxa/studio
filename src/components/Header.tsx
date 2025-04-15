@@ -99,7 +99,7 @@ const Header = () => {
       <div className="flex items-center space-x-2">
         <div className="relative">
           <Button variant="ghost" size="icon" asChild className="hover:underline">
-            <Link href="/checkout">
+            <Link href="/checkout" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
               <ShoppingCart className="h-6 w-6 text-black"/>
             </Link>
           </Button>
@@ -112,7 +112,7 @@ const Header = () => {
 
         {/* User Profile Icon */}
         <Button variant="ghost" size="icon" asChild className="hover:underline">
-          <Link href="/account-settings">
+          <Link href="/account-settings" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
             <User className="h-6 w-6 text-black"/>
           </Link>
         </Button>
