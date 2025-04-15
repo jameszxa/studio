@@ -7,7 +7,7 @@ import {Search, User} from 'lucide-react';
 
 const Header = () => {
   return (
-    <header className="bg-yellow-500 text-black p-4 flex items-center justify-between">
+    <header className="bg-primary text-primary-foreground p-4 flex items-center justify-between rounded-md shadow-md">
       {/* Logo */}
       <div className="flex items-center">
         <img src="https://placehold.co/40x40" alt="BUYong Logo" className="mr-2 rounded-full"/>
