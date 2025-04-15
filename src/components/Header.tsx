@@ -3,7 +3,7 @@
 import React from 'react';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
-import {Search, User} from 'lucide-react';
+import {Search, User, ShoppingCart} from 'lucide-react';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 
@@ -60,6 +60,13 @@ const Header = () => {
           <Search className="h-5 w-5 text-black"/>
         </Button>
       </div>
+
+      {/* Cart Icon */}
+      <Button variant="ghost" size="icon" asChild>
+        <Link href="/checkout">
+          <ShoppingCart className="h-6 w-6 text-black"/>
+        </Link>
+      </Button>
 
       {/* User Profile Icon */}
       <Button variant="ghost" size="icon" asChild>
