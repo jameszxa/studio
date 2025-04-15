@@ -14,7 +14,7 @@ const measurementId = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
 
 let app:any;
 let analytics:any;
-let authInstance:Auth;
+let authInstance:Auth | null = null;
 
 if (apiKey && authDomain && projectId && storageBucket && messagingSenderId && appId && measurementId) {
   // TODO: Replace the following with your app's Firebase project configuration
@@ -42,6 +42,6 @@ if (apiKey && authDomain && projectId && storageBucket && messagingSenderId && a
     // Export a placeholder for auth to prevent further errors
 }
 
-export let auth: Auth | null = authInstance ? authInstance : null;
+export const auth: Auth | null = authInstance;
 
 export {};
