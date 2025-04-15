@@ -1,4 +1,5 @@
 
+
 [
   {
     "id": "1",
@@ -7,7 +8,8 @@
     "price": 2500.00,
     "image": "https://i.picsum.photos/id/870/1000/667.jpg?hmac=LRXF6JbJgTqt3JZT1tH2Fxh1RxtdhYIuPEQj9jFvyoU",
     "category": "Clothing",
-    "location": "Cagayan de Oro"
+    "location": "Cagayan de Oro",
+    "storeId": "1"
   },
   {
     "id": "2",
@@ -16,7 +18,8 @@
     "price": 250.00,
     "image": "https://i.picsum.photos/id/1047/4928/3264.jpg?hmac=kfQCjnF609wS5K-nrjoAgZfEju2c0j77jqvGCUI6w2U",
     "category": "Food",
-    "location": "Baguio"
+    "location": "Baguio",
+    "storeId": "2"
   },
   {
     "id": "3",
@@ -25,7 +28,8 @@
     "price": 800.00,
     "image": "https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3G9YZj9epn5vL92jikkSmUxEdzKiyGvtfPMMOwnG5JM",
     "category": "Handicrafts",
-    "location": "Cagayan de Oro"
+    "location": "Cagayan de Oro",
+    "storeId": "1"
   },
   {
     "id": "4",
@@ -34,7 +38,8 @@
     "price": 300.00,
     "image": "https://i.picsum.photos/id/105/3672/4896.jpg?hmac=WxLgV22eCjTtq_Kj10jKzx0uD9vqGeqjZw-Y-oFMgOE",
     "category": "Food",
-    "location": "Cebu"
+    "location": "Cebu",
+     "storeId": "2"
   },
   {
     "id": "5",
@@ -43,7 +48,8 @@
     "price": 1200.00,
     "image": "https://i.picsum.photos/id/1062/4147/2756.jpg?hmac=W6wK-dVw-cGuKffZ-n7R2-byt7szm979KI3WCc5V-dQ",
     "category": "Handicrafts",
-    "location": "Cagayan de Oro"
+    "location": "Cagayan de Oro",
+    "storeId": "1"
   },
   {
     "id": "6",
@@ -52,7 +58,8 @@
     "price": 450.00,
     "image": "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbSh2NR-O9wkj16w_E_Zm-zRv1nnHoKt94jR9dQ",
     "category": "Food",
-    "location": "Luzon"
+    "location": "Luzon",
+    "storeId": "2"
   },
   {
     "id": "7",
@@ -61,7 +68,8 @@
     "price": 1800.00,
     "image": "https://i.picsum.photos/id/1074/5472/3648.jpg?hmac=cWqXjxLSiCHVtLuJY4qJvOMO9jJqF4ZAYo4UUW_GX74",
     "category": "Handicrafts",
-    "location": "Cagayan de Oro"
+    "location": "Cagayan de Oro",
+    "storeId": "1"
   },
   {
     "id": "8",
@@ -70,7 +78,8 @@
     "price": 3000.00,
     "image": "https://i.picsum.photos/id/1080/6720/4480.jpg?hmac=CJ-JnrRzVsOFpFjRyXJ3EtmEV_jI7YSY99F-WZcQo9k",
     "category": "Clothing",
-    "location": "Mindanao"
+    "location": "Mindanao",
+    "storeId": "2"
   }
 ]
 

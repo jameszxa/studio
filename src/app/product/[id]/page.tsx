@@ -10,6 +10,7 @@ import {Icons} from '@/components/icons';
 import {Input} from '@/components/ui/input';
 import {ShoppingCart, Star} from 'lucide-react';
 import { useToast } from "@/hooks/use-toast"
+import Link from 'next/link';
 
 interface Product {
   id: string;
@@ -19,9 +20,11 @@ interface Product {
   image: string;
   category: string;
   location: string;
+  storeId: string;
 }
 
 interface Store {
+  id: string;
   name: string;
   image: string;
 }
@@ -38,6 +41,7 @@ const ProductDetailPage = () => {
 
   // Mock store data
   const [store, setStore] = useState<Store>({
+    id: "1",
     name: "Aling Nena's Store",
     image: "https://i.picsum.photos/id/1027/800/600.jpg?hmac=unTLxR47WKMzK-U11fPw3mMsJOJ0VjKy1WJgsCPiucg",
   });
@@ -235,9 +239,11 @@ const ProductDetailPage = () => {
             className="rounded-full w-20 h-20 object-cover mr-4"/>
           <div>
             <h2 className="text-xl font-semibold">{store.name}</h2>
-            <Button size="sm" onClick={() => alert('Visit store functionality coming soon!')}>
-              Visit store
-            </Button>
+             <Link href={`/store/${store.id}`}>
+              <Button size="sm">
+                Visit store
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
