@@ -28,7 +28,7 @@ interface Store {
 const StorePage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const {id} = useParams<{ id: string }>();
-   const [store, setStore] = useState<Store>({
+  const [store, setStore] = useState<Store>({
     id: "1",
     name: "Aling Nena's Store",
     image: "https://i.picsum.photos/id/1027/800/600.jpg?hmac=unTLxR47WKMzK-U11fPw3mMsJOJ0VjKy1WJgsCPiucg",
@@ -54,55 +54,118 @@ const StorePage = () => {
   }, [id]);
 
   return (
-    <div className="container mx-auto py-10">
-      {/* Store Banner */}
-      <div className="relative w-full mb-8 rounded-md overflow-hidden shadow-md">
+    <div className="bg-background text-foreground">
+      {/* Banner Image */}
+      <div className="relative">
         <img
-          src="https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU" // Replace with your sale banner image
+          src="https://i.picsum.photos/id/866/1920/400.jpg?hmac=CpIJnqz3L5dt8gyZ2c6R63CmWHW4e0_Rz1m-nL9pWwU"
           alt="Store Banner"
-          className="w-full h-64 object-cover"
+          className="w-full h-48 object-cover"
         />
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-          <h2 className="text-4xl font-bold">Welcome to {store.name}!</h2>
-          <p className="text-lg">Discover amazing products from this local Filipino store.</p>
-        </div>
       </div>
 
-      {/* Store Information */}
-      <div className="flex items-center mb-8">
+      {/* Store Info */}
+      <div className="relative bg-white shadow-md rounded-md -mt-12 mx-4 p-4 flex items-center space-x-4">
         <img
-          src={store.image}
-          alt={store.name}
-          className="rounded-full w-32 h-32 object-cover mr-4"
+          src="https://i.pravatar.cc/150?img=1"
+          alt="Store Profile"
+          className="w-24 h-24 rounded-full border-2 border-primary"
         />
         <div>
-          <h2 className="text-2xl font-semibold">{store.name}</h2>
-          <p className="text-muted-foreground">Selling local Filipino products from Cagayan de Oro</p>
+          <h2 className="text-2xl font-semibold">John Doe's Store</h2>
         </div>
       </div>
 
-      {/* Product Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map(product => (
-          <Card key={product.id} className="cursor-pointer">
-            <CardHeader>
-              <CardTitle>{product.name}</CardTitle>
-            </CardHeader>
-            <CardContent className="p-4">
-              <img src={product.image} alt={product.name} className="rounded-md mb-4 w-full h-48 object-cover"/>
-              <CardDescription>{product.description}</CardDescription>
-              <div className="font-bold text-primary mt-2">PHP {product.price.toFixed(2)}</div>
+      {/* Product Listing */}
+      <div className="mx-4 mt-4">
+        <h3 className="text-xl font-semibold mb-2">Featured Products</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {products.map(product => (
+            <Card key={product.id} className="shadow-md">
+              <div className="relative">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-32 object-cover rounded-md"
+                />
+                {/* Sale Label */}
+                <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-md">-30%</div>
+              </div>
+              <CardContent className="p-2">
+                <CardTitle className="text-sm font-semibold">{product.name}</CardTitle>
+                <CardDescription className="text-gray-500 text-xs">PHP {product.price.toFixed(2)}</CardDescription>
+                <Button size="sm" className="w-full mt-2">Add to Cart</Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Popular Among Customers Section */}
+      <div className="mx-4 mt-8 bg-black text-white p-4 rounded-md">
+        <h3 className="text-xl font-semibold mb-2">Popular among customers...</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* Sample Popular Products (Replace with actual data) */}
+          <Card className="bg-gray-800 text-white shadow-md">
+            <div className="relative">
+              <img
+                src="https://i.picsum.photos/id/300/200/150.jpg"
+                alt="Product"
+                className="w-full h-32 object-cover rounded-md"
+              />
+              <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-md">New</div>
+            </div>
+            <CardContent className="p-2">
+              <CardTitle className="text-sm font-semibold">Product Name</CardTitle>
+              <CardDescription className="text-gray-400 text-xs">PHP 999</CardDescription>
+              {/* Rating Stars */}
+              <div className="flex items-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-3 w-3 text-yellow-500"/>
+                ))}
+              </div>
             </CardContent>
           </Card>
-        ))}
+          <Card className="bg-gray-800 text-white shadow-md">
+            <div className="relative">
+              <img
+                src="https://i.picsum.photos/id/301/200/150.jpg"
+                alt="Product"
+                className="w-full h-32 object-cover rounded-md"
+              />
+            </div>
+            <CardContent className="p-2">
+              <CardTitle className="text-sm font-semibold">Product Name</CardTitle>
+              <CardDescription className="text-gray-400 text-xs">PHP 500</CardDescription>
+              {/* Rating Stars */}
+              <div className="flex items-center">
+                {[...Array(4)].map((_, i) => (
+                  <Star key={i} className="h-3 w-3 text-yellow-500"/>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="bg-gray-800 text-white shadow-md">
+            <div className="relative">
+              <img
+                src="https://i.picsum.photos/id/302/200/150.jpg"
+                alt="Product"
+                className="w-full h-32 object-cover rounded-md"
+              />
+            </div>
+            <CardContent className="p-2">
+              <CardTitle className="text-sm font-semibold">Product Name</CardTitle>
+              <CardDescription className="text-gray-400 text-xs">PHP 750</CardDescription>
+              {/* Rating Stars */}
+              <div className="flex items-center">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-3 w-3 text-yellow-500"/>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-       {products.length === 0 && (
-          <div className="text-center mt-4">
-            <Icons.loader className="h-6 w-6 animate-spin mx-auto mb-2" />
-            <p>Loading products...</p>
-          </div>
-        )}
     </div>
   );
 };
