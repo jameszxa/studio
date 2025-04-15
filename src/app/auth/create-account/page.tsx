@@ -10,11 +10,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Icons } from "@/components/icons";
-import {
-    createUserWithEmailAndPassword,
-  } from "firebase/auth";
-import { auth } from "@/lib/firebase";
 import { useRouter } from 'next/navigation';
+import { createUser } from '@/services/user-service';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 const CreateAccountPage = () => {
     const [isLoading, setIsLoading] = React.useState(false);
@@ -44,12 +43,12 @@ const CreateAccountPage = () => {
       setIsLoading(true);
       try {
         if (!auth) {
+          console.error("Firebase Auth not initialized.");
           toast({
             variant: "destructive",
             title: "Error creating account.",
-            description: "Firebase authentication not initialized. Please try again later.",
+            description: "Firebase Auth is not properly initialized. Please try again later.",
           });
-          setIsLoading(false);
           return;
         }
         await createUserWithEmailAndPassword(auth, values.email, values.password);
@@ -57,30 +56,15 @@ const CreateAccountPage = () => {
           title: "Account created successfully!",
           description: "You can now sign in to your new account.",
         });
-        router.push('/account-settings'); // Redirect to account settings
+        router.push('/account-settings'); // Redirect to account settings page
       } catch (error: any) {
-        console.error("Firebase authentication error:", error);
+        console.error("Account creation error:", error);
   
-        // Improved error handling
-        if (error.code === 'auth/email-already-in-use') {
-          toast({
-            variant: "destructive",
-            title: "Error creating account.",
-            description: "This email is already in use. Please use a different email or sign in.",
-          });
-        } else if (error.code === 'auth/weak-password') {
-          toast({
-            variant: "destructive",
-            title: "Error creating account.",
-            description: "The password is too weak. Please use a stronger password.",
-          });
-        } else {
-          toast({
-            variant: "destructive",
-            title: "Error creating account.",
-            description: "Failed to create account. Please check your credentials or try again later.",
-          });
-        }
+        toast({
+          variant: "destructive",
+          title: "Error creating account.",
+          description: "Failed to create account. Please check your credentials or try again later.",
+        });
       } finally {
         setIsLoading(false);
       }
@@ -115,7 +99,9 @@ const CreateAccountPage = () => {
                     Create Account
                 </Button>
         </CardContent>
-        
+        <div className='p-6'>
+                    Already an account? <Link href="/auth/sign-in">Sign In</Link>
+                </div>
       </Card>
     </div>
   );

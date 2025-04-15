@@ -1,4 +1,4 @@
-"use client";
+use client";
 
 import React from 'react';
 import { Button } from "@/components/ui/button"
@@ -10,13 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Icons } from "@/components/icons";
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-  } from "firebase/auth";
-import { auth } from "@/lib/firebase";
 import { useRouter } from 'next/navigation';
+import { authenticateUser } from '@/services/user-service';
 
 const SignInPage = () => {
     const [isLoading, setIsLoading] = React.useState(false);
@@ -38,29 +33,28 @@ const SignInPage = () => {
       const onSignIn = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         try {
-          await signInWithEmailAndPassword(auth, values.email, values.password);
-          toast({
-            title: "Sign in successfully!",
-            description: "You are now signed in.",
-          });
-          router.push('/');
+          const user = await authenticateUser(values.email, values.password);
+          if (user) {
+            toast({
+                title: "Sign in successfully!",
+                description: "You are now signed in.",
+            });
+            router.push('/');
+          } else {
+            toast({
+                variant: "destructive",
+                title: "Error signing in.",
+                description: "Invalid credentials. Please double-check your email and password.",
+            });
+          }
         } catch (error: any) {
-            console.error("Firebase sign-in error:", error);
+            console.error("Sign-in error:", error);
 
-            // Improved error handling for sign-in
-            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                toast({
-                    variant: "destructive",
-                    title: "Error signing in.",
-                    description: "Invalid credentials. Please double-check your email and password.",
-                });
-            } else {
-                toast({
-                    variant: "destructive",
-                    title: "Error signing in.",
-                    description: "Failed to sign in. Please check your credentials or try again later.",
-                });
-            }
+            toast({
+                variant: "destructive",
+                title: "Error signing in.",
+                description: "Failed to sign in. Please check your credentials or try again later.",
+            });
         } finally {
             setIsLoading(false);
         }
