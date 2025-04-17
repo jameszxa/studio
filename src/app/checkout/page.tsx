@@ -7,6 +7,7 @@ import {Card, CardContent} from '@/components/ui/card';
 import {Trash} from 'lucide-react';
 import {cn} from '@/lib/utils';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface CartItem {
   id: string;
@@ -21,6 +22,7 @@ const CheckoutPage = () => {
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
   const [couponCode, setCouponCode] = useState('');
   const [discount, setDiscount] = useState(0);
+    const router = useRouter();
 
   useEffect(() => {
     // Load cart items from local storage
@@ -99,8 +101,18 @@ const CheckoutPage = () => {
   };
 
   const subtotal = calculateSubtotal();
-  const shippingFee = 0; // Free shipping
+  const shippingFee = 50; // Philippine pesos
   const total = subtotal * (1 - discount) + shippingFee;
+
+    const handleProceedToCheckout = () => {
+        // Clear the cart
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('quantities');
+
+        // Redirect to a confirmation page
+        router.push('/order-confirmation');
+    };
+
 
   return (
     <div className="container mx-auto py-10">
@@ -183,9 +195,9 @@ const CheckoutPage = () => {
                   <span>Subtotal:</span>
                   <span>PHP {subtotal.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between mb-2">
-                  <span>Shipping:</span>
-                  <span>Free</span>
+                 <div className="flex justify-between mb-2">
+                    <span>Shipping:</span>
+                    <span>PHP {shippingFee.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between mb-2">
                   <span>Discount:</span>
@@ -195,7 +207,16 @@ const CheckoutPage = () => {
                   <span>Total:</span>
                   <span>PHP {total.toFixed(2)}</span>
                 </div>
-                <Button className="mt-4 w-full">
+                  {/* Shipping Information */}
+                  <div className="mt-4 border rounded-md p-4">
+                      <h3 className="text-md font-semibold mb-2">Shipping Information</h3>
+                      <p>Delivery within Cagayan de Oro: PHP {shippingFee.toFixed(2)}</p>
+                      <p>Estimated Delivery Time: 2-3 business days</p>
+                      <Link href="/shipping-details" className="text-primary hover:underline">
+                          View Delivery Details
+                      </Link>
+                  </div>
+                <Button className="mt-4 w-full" onClick={handleProceedToCheckout}>
                   Proceed to Checkout
                 </Button>
               </CardContent>
