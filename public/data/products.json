@@ -2,8 +2,8 @@
 [
   {
     "id": "1",
-    "name": "Barong Tagalog",
-    "description": "The Barong Tagalog is the national dress of the Philippines. It is an embroidered long-sleeved shirt made of lightweight material.",
+    "name": "Barong Tagalog - House of HABI",
+    "description": "Authentic Barong Tagalog from House of HABI, a local artisan shop in Cagayan de Oro. Perfect for formal events.",
     "price": 2500.00,
     "image": "https://rootscollective.ph/cdn/shop/files/Edit_HouseofHABIBarong.png?v=1691043760&width=1080",
     "category": "Clothing",
@@ -12,18 +12,18 @@
   },
   {
     "id": "2",
-    "name": "Baguio Strawberry Jam",
-    "description": "A sweet and delicious jam made from fresh strawberries grown in Baguio, Philippines.",
+    "name": "Carmen's Kitchen Strawberry Jam",
+    "description": "Homemade Strawberry Jam from Carmen's Kitchen in Cagayan de Oro. Made with locally sourced strawberries.",
     "price": 250.00,
     "image": "/images/strawberry_jam.jpg",
     "category": "Food",
-    "location": "Baguio",
+    "location": "Cagayan de Oro",
     "storeId": "2"
   },
   {
     "id": "3",
-    "name": "Handwoven Basket",
-    "description": "A beautifully handwoven basket made by local artisans in the Philippines. Perfect for storage or decoration.",
+    "name": "Tagolwanen Women Weavers Basket",
+    "description": "Handwoven basket by the Tagolwanen Women Weavers of Cagayan de Oro. Perfect for storage or decoration.",
     "price": 800.00,
     "image": "https://i.ebayimg.com/images/g/-hQAAOSwtW1gTTrA/s-l1600.webp",
     "category": "Handicrafts",
@@ -32,18 +32,18 @@
   },
   {
     "id": "4",
-    "name": "Dried Mangoes",
-    "description": "A popular Filipino snack made from sweet and juicy Philippine mangoes.",
+    "name": "Cebu's Best Dried Mangoes",
+    "description": "Premium dried mangoes from Cebu's Best, now available at local stores in Cagayan de Oro.",
     "price": 300.00,
     "image": "/images/dried_mangoes.jpg",
     "category": "Food",
-    "location": "Cebu",
+    "location": "Cagayan de Oro",
      "storeId": "2"
   },
   {
     "id": "5",
-    "name": "Capiz Shell Decor",
-    "description": "A decorative item made from capiz shells, a type of oyster found in Philippine waters.",
+    "name": "Capiz Shell Lantern from Oro Handicrafts",
+    "description": "Decorative lantern made from Capiz shells by Oro Handicrafts, a local shop in Cagayan de Oro.",
     "price": 1200.00,
     "image": "/images/capiz_shell.jpg",
     "category": "Handicrafts",
@@ -52,18 +52,18 @@
   },
   {
     "id": "6",
-    "name": "Luzon Coffee Beans",
-    "description": "High quality coffee beans sourced from the Luzon region of the Philippines. Enjoy a rich and aromatic cup.",
+    "name": "Apo ni Lola Tablea",
+    "description": "Rich and flavorful tablea from Apo ni Lola, sourced locally and sold in Cagayan de Oro.",
     "price": 450.00,
     "image": "/images/coffee_beans.jpg",
     "category": "Food",
-    "location": "Luzon",
+    "location": "Cagayan de Oro",
     "storeId": "2"
   },
   {
     "id": "7",
-    "name": "Mother of Pearl Jewelry Box",
-    "description": "An elegant jewelry box inlaid with mother of pearl, handcrafted by skilled Filipino artisans.",
+    "name": "Mother of Pearl Inlaid Box by CDO Crafts",
+    "description": "Elegant jewelry box inlaid with mother of pearl, handcrafted by CDO Crafts artisans.",
     "price": 1800.00,
     "image": "/images/jewelry_box.jpg",
     "category": "Handicrafts",
@@ -72,12 +72,12 @@
   },
   {
     "id": "8",
-    "name": "Yakan Cloth",
-    "description": "A vibrant and intricately woven cloth from the Yakan tribe of Mindanao, Philippines.",
+    "name": "Inaul Scarf from Mindanao Silk",
+    "description": "Vibrant and intricately woven Inaul cloth from Mindanao Silk, available at local markets in Cagayan de Oro.",
     "price": 3000.00,
     "image": "/images/yakan_cloth.jpg",
     "category": "Clothing",
-    "location": "Mindanao",
+    "location": "Cagayan de Oro",
     "storeId": "2"
   }
 ]
