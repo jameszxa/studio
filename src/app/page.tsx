@@ -24,15 +24,15 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
-    const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-    const bannerImages = [
-        "https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU",
-        "https://i.picsum.photos/id/237/1920/1080.jpg?hmac=ExwG_JLRyK_0mKiZOUt54Dt9hG7QyBwJkW-3qUzlP6o",
-        "https://i.picsum.photos/id/1047/4928/3264.jpg?hmac=kfQCjnF609wS5K-nrjoAgZfEju2c0j77jqvGCUI6w2U",
-        "https://i.picsum.photos/id/105/3672/4896.jpg?hmac=WxLgV22eCjTtq_Kj10jKzx0uD9vqGeqjZw-Y-oFMgOE",
-        "https://i.picsum.photos/id/1062/4147/2756.jpg?hmac=W6wK-dVw-cGuKffZ-n7R2-byt7szm979KI3WCc5V-dQ"
-    ];
+  const bannerImages = [
+    "https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU",
+    "https://i.picsum.photos/id/237/1920/1080.jpg?hmac=ExwG_JLRyK_0mKiZOUt54Dt9hG7QyBwJkW-3qUzlP6o",
+    "https://i.picsum.photos/id/1047/4928/3264.jpg?hmac=kfQCjnF609wS5K-nrjoAgZfEju2c0j77jqvGCUI6w2U",
+    "https://i.picsum.photos/id/105/3672/4896.jpg?hmac=WxLgV22eCjTtq_Kj10jKzx0uD9vqGeqjZw-Y-oFMgOE",
+    "https://i.picsum.photos/id/1062/4147/2756.jpg?hmac=W6wK-dVw-cGuKffZ-n7R2-byt7szm979KI3WCc5V-dQ"
+  ];
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -67,13 +67,17 @@ const Home = () => {
     router.push(`/product/${id}?searchTerm=${searchTerm}`);
   };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentSlide((prevSlide) => (prevSlide + 1) % bannerImages.length);
-        }, 5000); // Change slide every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % bannerImages.length);
+    }, 5000); // Change slide every 5 seconds
 
-        return () => clearInterval(interval);
-    }, []);
+    return () => clearInterval(interval);
+  }, [bannerImages.length]);
+
+  const goToSlide = (slideIndex: number) => {
+    setCurrentSlide(slideIndex);
+  };
 
   return (
     <div className="container mx-auto py-10">
@@ -83,12 +87,25 @@ const Home = () => {
           src={bannerImages[currentSlide]}
           alt="Sale Event"
           className="w-full h-64 object-cover transition-opacity duration-500"
-            style={{ opacity: 1 }} // Add transition for smoother effect
+          style={{opacity: 1}} // Add transition for smoother effect
         />
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
           <h2 className="text-4xl font-bold text-primary-foreground">Welcome to BUYong!</h2>
           <p className="text-lg text-primary-foreground">Discover amazing deals on local Filipino products.</p>
+        </div>
+        {/* Slide Indicators */}
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+          {bannerImages.map((_, index) => (
+            <button
+              key={index}
+              className={`h-3 w-3 rounded-full transition-colors duration-300 ${
+                currentSlide === index ? 'bg-primary' : 'bg-gray-300 hover:bg-gray-400'
+              }`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
 
@@ -113,23 +130,24 @@ const Home = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">New Arrivals</h2>
         {/* Add New Arrivals component here */}
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProducts.map(product => (
-          <Card key={product.id} className="cursor-pointer" onClick={() => handleProductClick(product.id)}>
-            <CardHeader>
-              <CardTitle>{product.name}</CardTitle>
-            </CardHeader>
-            <CardContent className="p-4">
-              <img src={product.image} alt={product.name} className="rounded-md mb-4 w-full h-48 object-cover"/>
-              <CardDescription>{product.description}</CardDescription>
-              <div className="font-bold text-primary mt-2">PHP {product.price.toFixed(2)}</div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-          {products.length === 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProducts.map(product => (
+            <Card key={product.id} className="cursor-pointer" onClick={() => handleProductClick(product.id)}>
+              <CardHeader>
+                <CardTitle>{product.name}</CardTitle>
+              </CardHeader>
+              <CardContent className="p-4">
+                <img src={product.image} alt={product.name}
+                  className="rounded-md mb-4 w-full h-48 object-cover"/>
+                <CardDescription>{product.description}</CardDescription>
+                <div className="font-bold text-primary mt-2">PHP {product.price.toFixed(2)}</div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        {products.length === 0 && (
           <div className="text-center mt-4">
-            <Icons.loader className="h-6 w-6 animate-spin mx-auto mb-2" />
+            <Icons.loader className="h-6 w-6 animate-spin mx-auto mb-2"/>
             <p>Loading products...</p>
           </div>
         )}
@@ -145,4 +163,3 @@ const Home = () => {
 };
 
 export default Home;
-
