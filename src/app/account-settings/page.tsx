@@ -73,9 +73,9 @@ const AccountSettingsPage = () => {
               <CardTitle>Manage My Account</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              <Link href="#" className="block hover:underline">My Profile</Link>
-              <Link href="#" className="block hover:underline">Address Book</Link>
-              <Link href="#" className="block hover:underline">My Payment Options</Link>
+              <Link href="/address-book" className="block hover:underline">My Profile</Link>
+              <Link href="/address-book" className="block hover:underline">Address Book</Link>
+              <Link href="/payment-options" className="block hover:underline">My Payment Options</Link>
             </CardContent>
           </Card>
           <Card className="mt-4">
@@ -83,7 +83,7 @@ const AccountSettingsPage = () => {
               <CardTitle>My Orders</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
-              <Link href="#" className="block hover:underline">My Returns</Link>
+              <Link href="/my-orders" className="block hover:underline">My Returns</Link>
               <Link href="#" className="block hover:underline">My Cancellations</Link>
             </CardContent>
           </Card>
