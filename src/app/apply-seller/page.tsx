@@ -108,7 +108,7 @@ const ApplySellerPage = () => {
   };
 
     const mapAddress = `${addressLine1}, ${addressLine2 ? addressLine2 + ', ' : ''}${city}, ${state} ${postcode}, ${country}`;
-    const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(mapAddress)}`;
+    // const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(mapAddress)}`;
 
 
   return (
@@ -253,16 +253,16 @@ const ApplySellerPage = () => {
                     )}
                   </div>
                                   {/* Google Maps Embed */}
-                                  <div className="mt-4">
-                                      <iframe
-                                          width="100%"
-                                          height="300"
-                                          style={{ border: 0 }}
-                                          loading="lazy"
-                                          allowFullScreen
-                                          src={mapEmbedUrl}
-                                      ></iframe>
-                                  </div>
+                                  {/*<div className="mt-4">*/}
+                                  {/*    <iframe*/}
+                                  {/*        width="100%"*/}
+                                  {/*        height="300"*/}
+                                  {/*        style={{ border: 0 }}*/}
+                                  {/*        loading="lazy"*/}
+                                  {/*        allowFullScreen*/}
+                                  {/*        src={mapEmbedUrl}*/}
+                                  {/*    ></iframe>*/}
+                                  {/*</div>*/}
                   <Button size="sm" onClick={handleSave}>Save</Button>
                 </CardContent>
               </Card>
