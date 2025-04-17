@@ -10,9 +10,8 @@ const PaymentOptionsPage = () => {
   const [paymentMethods, setPaymentMethods] = React.useState([
     {
       id: '1',
-      type: 'Credit Card',
-      cardNumber: '**** **** **** 1234',
-      expiry: '12/24',
+      type: 'GCash',
+      accountNumber: '09123456789',
     },
   ]);
 
@@ -38,8 +37,7 @@ const PaymentOptionsPage = () => {
           {paymentMethods.map(method => (
             <div key={method.id} className="mb-4 border rounded-md p-4">
               <h3 className="text-lg font-semibold">{method.type}</h3>
-              <p>Card Number: {method.cardNumber}</p>
-              <p>Expiry: {method.expiry}</p>
+              <p>GCash Account Number: {method.accountNumber}</p>
               <div className="flex justify-end mt-2">
                 <Button size="sm" onClick={() => handleEditPaymentMethod(method.id)}>
                   Edit
