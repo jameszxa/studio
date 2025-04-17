@@ -57,7 +57,7 @@ const Header = () => {
       <div className="flex items-center">
         <Link href="/">
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/buyong-cdod.appspot.com/o/buyong_logo.png?alt=media&token=4ef99929-11eb-444a-a4a4-8e5014bbd991"
+            src="/images/download.png"
             alt="BUYong Logo"
             className="mr-2 rounded-full w-10 h-10 cursor-pointer"
           />

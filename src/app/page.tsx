@@ -24,6 +24,15 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const bannerImages = [
+        "https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU",
+        "https://i.picsum.photos/id/237/1920/1080.jpg?hmac=ExwG_JLRyK_0mKiZOUt54Dt9hG7QyBwJkW-3qUzlP6o",
+        "https://i.picsum.photos/id/1047/4928/3264.jpg?hmac=kfQCjnF609wS5K-nrjoAgZfEju2c0j77jqvGCUI6w2U",
+        "https://i.picsum.photos/id/105/3672/4896.jpg?hmac=WxLgV22eCjTtq_Kj10jKzx0uD9vqGeqjZw-Y-oFMgOE",
+        "https://i.picsum.photos/id/1062/4147/2756.jpg?hmac=W6wK-dVw-cGuKffZ-n7R2-byt7szm979KI3WCc5V-dQ"
+    ];
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -58,14 +67,23 @@ const Home = () => {
     router.push(`/product/${id}?searchTerm=${searchTerm}`);
   };
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prevSlide) => (prevSlide + 1) % bannerImages.length);
+        }, 5000); // Change slide every 5 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
   return (
     <div className="container mx-auto py-10">
       {/* Welcome Banner */}
       <div className="relative w-full mb-8 rounded-md overflow-hidden shadow-md">
         <img
-          src="https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU" // Replace with your sale banner image
+          src={bannerImages[currentSlide]}
           alt="Sale Event"
-          className="w-full h-64 object-cover"
+          className="w-full h-64 object-cover transition-opacity duration-500"
+            style={{ opacity: 1 }} // Add transition for smoother effect
         />
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
