@@ -1,12 +1,11 @@
 
-
 [
   {
     "id": "1",
     "name": "Barong Tagalog",
     "description": "The Barong Tagalog is the national dress of the Philippines. It is an embroidered long-sleeved shirt made of lightweight material.",
     "price": 2500.00,
-    "image": "https://i.picsum.photos/id/870/1000/667.jpg?hmac=LRXF6JbJgTqt3JZT1tH2Fxh1RxtdhYIuPEQj9jFvyoU",
+    "image": "/images/barong.jpg",
     "category": "Clothing",
     "location": "Cagayan de Oro",
     "storeId": "1"
@@ -16,7 +15,7 @@
     "name": "Baguio Strawberry Jam",
     "description": "A sweet and delicious jam made from fresh strawberries grown in Baguio, Philippines.",
     "price": 250.00,
-    "image": "https://i.picsum.photos/id/1047/4928/3264.jpg?hmac=kfQCjnF609wS5K-nrjoAgZfEju2c0j77jqvGCUI6w2U",
+    "image": "/images/strawberry_jam.jpg",
     "category": "Food",
     "location": "Baguio",
     "storeId": "2"
@@ -26,7 +25,7 @@
     "name": "Handwoven Basket",
     "description": "A beautifully handwoven basket made by local artisans in the Philippines. Perfect for storage or decoration.",
     "price": 800.00,
-    "image": "https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3G9YZj9epn5vL92jikkSmUxEdzKiyGvtfPMMOwnG5JM",
+    "image": "/images/basket.jpg",
     "category": "Handicrafts",
     "location": "Cagayan de Oro",
     "storeId": "1"
@@ -36,7 +35,7 @@
     "name": "Dried Mangoes",
     "description": "A popular Filipino snack made from sweet and juicy Philippine mangoes.",
     "price": 300.00,
-    "image": "https://i.picsum.photos/id/105/3672/4896.jpg?hmac=WxLgV22eCjTtq_Kj10jKzx0uD9vqGeqjZw-Y-oFMgOE",
+    "image": "/images/dried_mangoes.jpg",
     "category": "Food",
     "location": "Cebu",
      "storeId": "2"
@@ -46,7 +45,7 @@
     "name": "Capiz Shell Decor",
     "description": "A decorative item made from capiz shells, a type of oyster found in Philippine waters.",
     "price": 1200.00,
-    "image": "https://i.picsum.photos/id/1062/4147/2756.jpg?hmac=W6wK-dVw-cGuKffZ-n7R2-byt7szm979KI3WCc5V-dQ",
+    "image": "/images/capiz_shell.jpg",
     "category": "Handicrafts",
     "location": "Cagayan de Oro",
     "storeId": "1"
@@ -56,7 +55,7 @@
     "name": "Luzon Coffee Beans",
     "description": "High quality coffee beans sourced from the Luzon region of the Philippines. Enjoy a rich and aromatic cup.",
     "price": 450.00,
-    "image": "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbSh2NR-O9wkj16w_E_Zm-zRv1nnHoKt94jR9dQ",
+    "image": "/images/coffee_beans.jpg",
     "category": "Food",
     "location": "Luzon",
     "storeId": "2"
@@ -66,7 +65,7 @@
     "name": "Mother of Pearl Jewelry Box",
     "description": "An elegant jewelry box inlaid with mother of pearl, handcrafted by skilled Filipino artisans.",
     "price": 1800.00,
-    "image": "https://i.picsum.photos/id/1074/5472/3648.jpg?hmac=cWqXjxLSiCHVtLuJY4qJvOMO9jJqF4ZAYo4UUW_GX74",
+    "image": "/images/jewelry_box.jpg",
     "category": "Handicrafts",
     "location": "Cagayan de Oro",
     "storeId": "1"
@@ -76,11 +75,10 @@
     "name": "Yakan Cloth",
     "description": "A vibrant and intricately woven cloth from the Yakan tribe of Mindanao, Philippines.",
     "price": 3000.00,
-    "image": "https://i.picsum.photos/id/1080/6720/4480.jpg?hmac=CJ-JnrRzVsOFpFjRyXJ3EtmEV_jI7YSY99F-WZcQo9k",
+    "image": "/images/yakan_cloth.jpg",
     "category": "Clothing",
     "location": "Mindanao",
     "storeId": "2"
   }
 ]
-
     
