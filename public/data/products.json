@@ -5,7 +5,7 @@
     "name": "Barong Tagalog",
     "description": "The Barong Tagalog is the national dress of the Philippines. It is an embroidered long-sleeved shirt made of lightweight material.",
     "price": 2500.00,
-    "image": "/images/barong.jpg",
+    "image": "https://cdn.shopify.com/s/files/1/0270/4339/7968/products/Maskforacause_1_1_800x.jpg?v=1614398352",
     "category": "Clothing",
     "location": "Cagayan de Oro",
     "storeId": "1"
@@ -81,4 +81,5 @@
     "storeId": "2"
   }
 ]
+    
     
