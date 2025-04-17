@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button} from '@/components/ui/button';
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Input} from '@/components/ui/input';
 import {Textarea} from '@/components/ui/textarea';
 import {Label} from '@/components/ui/label';
-import {Avatar, AvatarImage, AvatarFallback} from '@/components/ui/avatar';
+import {Avatar, AvatarImage, AvatarFallback} from "@/components/ui/avatar";
 import {useEffect, useState} from 'react';
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group";
 import {useForm} from "react-hook-form";
@@ -107,6 +107,10 @@ const ApplySellerPage = () => {
     alert('Application submitted!');
         router.push('/seller-dashboard'); // Redirect to seller dashboard after submission
   };
+
+    const mapAddress = `${addressLine1}, ${addressLine2 ? addressLine2 + ', ' : ''}${city}, ${state} ${postcode}, ${country}`;
+    const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(mapAddress)}`;
+
 
   return (
     <div className="container mx-auto py-10 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -249,6 +253,17 @@ const ApplySellerPage = () => {
                       <p className="text-red-500 text-sm">{errors.locationOnMap.message}</p>
                     )}
                   </div>
+                                  {/* Google Maps Embed */}
+                                  <div className="mt-4">
+                                      <iframe
+                                          width="100%"
+                                          height="300"
+                                          style={{ border: 0 }}
+                                          loading="lazy"
+                                          allowFullScreen
+                                          src={mapEmbedUrl}
+                                      ></iframe>
+                                  </div>
                   <Button size="sm" onClick={handleSave}>Save</Button>
                 </CardContent>
               </Card>
