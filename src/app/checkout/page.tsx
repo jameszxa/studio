@@ -23,6 +23,14 @@ const CheckoutPage = () => {
   const [couponCode, setCouponCode] = useState('');
   const [discount, setDiscount] = useState(0);
     const router = useRouter();
+  const [isGuest, setIsGuest] = useState(false);
+  const [shippingDetails, setShippingDetails] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        address: ''
+    });
 
   useEffect(() => {
     // Load cart items from local storage
@@ -113,10 +121,43 @@ const CheckoutPage = () => {
         router.push('/order-confirmation');
     };
 
+    const handleGuestCheckout = () => {
+        setIsGuest(true);
+    };
+
+    const handleShippingDetailsChange = (e: any) => {
+        setShippingDetails({ ...shippingDetails, [e.target.id]: e.target.value });
+    };
+
 
   return (
     <div className="container mx-auto py-10">
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
+
+            {/* Checkout Progress */}
+            <div className="mb-4">
+                <ol className="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+                    <li className="flex md:w-full items-center text-blue-600 dark:text-blue-500 sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:inline-block after:mx-6 xl:mx-8 dark:after:border-gray-700">
+                        <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-700">
+                            <span className="me-2">Cart</span>
+                            <svg className="hidden w-3 h-3 text-blue-600 sm:inline-flex shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 9.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                            </svg>
+                        </span>
+                    </li>
+                    <li className="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:inline-block after:mx-6 xl:mx-8 dark:after:border-gray-700">
+                        <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-700">
+                            <span className="me-2">Shipping</span>
+                            <svg className="w-3 h-3 ms-2 sm:inline-flex shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 9.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                            </svg>
+                        </span>
+                    </li>
+                    <li className="flex items-center">
+                        <span className="me-2">Review</span>
+                    </li>
+                </ol>
+            </div>
 
       {cartItems.length === 0 ? (
         <p>Your cart is empty. <Link href="/" className="text-primary">Return to Shop</Link></p>
@@ -207,6 +248,40 @@ const CheckoutPage = () => {
                   <span>Total:</span>
                   <span>PHP {total.toFixed(2)}</span>
                 </div>
+
+                  {/* Guest Checkout Form */}
+                  {isGuest ? (
+                    <div className="mt-4 border rounded-md p-4">
+                        <h3 className="text-md font-semibold mb-2">Shipping Details</h3>
+                        <div className="grid gap-4">
+                            <div>
+                                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
+                                <Input type="text" id="firstName" className="mt-1" onChange={handleShippingDetailsChange} required/>
+                            </div>
+                            <div>
+                                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name</label>
+                                <Input type="text" id="lastName" className="mt-1" onChange={handleShippingDetailsChange} required/>
+                            </div>
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                                <Input type="email" id="email" className="mt-1" onChange={handleShippingDetailsChange} required/>
+                            </div>
+                            <div>
+                                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                                <Input type="tel" id="phoneNumber" className="mt-1" onChange={handleShippingDetailsChange} required/>
+                            </div>
+                            <div>
+                                <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address</label>
+                                <Input type="text" id="address" className="mt-1" onChange={handleShippingDetailsChange} required/>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <Button className="mt-4 w-full" onClick={handleGuestCheckout}>
+                        Checkout as Guest
+                    </Button>
+                )}
+
                   {/* Shipping Information */}
                   <div className="mt-4 border rounded-md p-4">
                       <h3 className="text-md font-semibold mb-2">Shipping Information</h3>
@@ -216,7 +291,8 @@ const CheckoutPage = () => {
                           View Delivery Details
                       </Link>
                   </div>
-                <Button className="mt-4 w-full" onClick={handleProceedToCheckout}>
+
+                <Button className="mt-4 w-full" onClick={handleProceedToCheckout} disabled={isGuest && (!shippingDetails.firstName || !shippingDetails.lastName || !shippingDetails.email || !shippingDetails.phoneNumber || !shippingDetails.address)}>
                   Proceed to Checkout
                 </Button>
               </CardContent>
