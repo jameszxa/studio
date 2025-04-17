@@ -23,6 +23,7 @@ interface Store {
   id: string;
   name: string;
   image: string;
+  description: string;
 }
 
 const StorePage = () => {
@@ -32,6 +33,7 @@ const StorePage = () => {
     id: "1",
     name: "Aling Nena's Store",
     image: "https://i.picsum.photos/id/1027/800/600.jpg?hmac=unTLxR47WKMzK-U11fPw3mMsJOJ0VjKy1WJgsCPiucg",
+      description: "Aling Nena's Store is a local shop in Cagayan de Oro known for its wide variety of Filipino delicacies and handicrafts."
   });
 
   useEffect(() => {
@@ -72,13 +74,14 @@ const StorePage = () => {
           className="w-24 h-24 rounded-full border-2 border-primary"
         />
         <div>
-          <h2 className="text-2xl font-semibold">John Doe's Store</h2>
+          <h2 className="text-2xl font-semibold">{store.name}</h2>
+            <p className="text-gray-500">{store.description}</p>
         </div>
       </div>
 
       {/* Product Listing */}
       <div className="mx-4 mt-4">
-        <h3 className="text-xl font-semibold mb-2">Featured Products</h3>
+        <h3 className="text-xl font-semibold mb-2">All Products</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {products.map(product => (
             <Card key={product.id} className="shadow-md">
@@ -98,72 +101,6 @@ const StorePage = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-      </div>
-
-      {/* Popular Among Customers Section */}
-      <div className="mx-4 mt-8 bg-black text-white p-4 rounded-md">
-        <h3 className="text-xl font-semibold mb-2">Popular among customers...</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {/* Sample Popular Products (Replace with actual data) */}
-          <Card className="bg-gray-800 text-white shadow-md">
-            <div className="relative">
-              <img
-                src="https://i.picsum.photos/id/300/200/150.jpg"
-                alt="Product"
-                className="w-full h-32 object-cover rounded-md"
-              />
-              <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-md">New</div>
-            </div>
-            <CardContent className="p-2">
-              <CardTitle className="text-sm font-semibold">Product Name</CardTitle>
-              <CardDescription className="text-gray-400 text-xs">PHP 999</CardDescription>
-              {/* Rating Stars */}
-              <div className="flex items-center">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-3 w-3 text-yellow-500"/>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="bg-gray-800 text-white shadow-md">
-            <div className="relative">
-              <img
-                src="https://i.picsum.photos/id/301/200/150.jpg"
-                alt="Product"
-                className="w-full h-32 object-cover rounded-md"
-              />
-            </div>
-            <CardContent className="p-2">
-              <CardTitle className="text-sm font-semibold">Product Name</CardTitle>
-              <CardDescription className="text-gray-400 text-xs">PHP 500</CardDescription>
-              {/* Rating Stars */}
-              <div className="flex items-center">
-                {[...Array(4)].map((_, i) => (
-                  <Star key={i} className="h-3 w-3 text-yellow-500"/>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="bg-gray-800 text-white shadow-md">
-            <div className="relative">
-              <img
-                src="https://i.picsum.photos/id/302/200/150.jpg"
-                alt="Product"
-                className="w-full h-32 object-cover rounded-md"
-              />
-            </div>
-            <CardContent className="p-2">
-              <CardTitle className="text-sm font-semibold">Product Name</CardTitle>
-              <CardDescription className="text-gray-400 text-xs">PHP 750</CardDescription>
-              {/* Rating Stars */}
-              <div className="flex items-center">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-3 w-3 text-yellow-500"/>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>

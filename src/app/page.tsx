@@ -7,6 +7,7 @@ import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {Icons} from '@/components/icons';
 import React from "react";
+import Link from "next/link";
 
 interface Product {
   id: string;
@@ -121,9 +122,12 @@ const Home = () => {
 
       {/* Flash Sales Section */}
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">Flash Sales</h2>
-        {/* Add Flash Sales component here */}
-        <p>Flash sales content will be here</p>
+        <h2 className="text-2xl font-semibold mb-4">Shop by Category</h2>
+        <div className="flex justify-around">
+            <Link href="/category/clothing">Clothing</Link>
+            <Link href="/category/food">Food</Link>
+            <Link href="/category/handicrafts">Handicrafts</Link>
+        </div>
       </section>
 
       {/* New Arrival Section */}

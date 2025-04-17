@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, {useEffect, useState} from 'react';
@@ -75,6 +76,27 @@ const Header = () => {
           style={{color: 'black'}}
         >
           Home
+        </Link>
+        <Link
+          href="/category/clothing"
+          className="hover:underline text-black data-[active=true]:text-primary-foreground"
+          style={{color: 'black'}}
+        >
+          Clothing
+        </Link>
+         <Link
+          href="/category/food"
+          className="hover:underline text-black data-[active=true]:text-primary-foreground"
+          style={{color: 'black'}}
+        >
+          Food
+        </Link>
+         <Link
+          href="/category/handicrafts"
+          className="hover:underline text-black data-[active=true]:text-primary-foreground"
+          style={{color: 'black'}}
+        >
+          Handicrafts
         </Link>
         <Link
           href="/contact"
