@@ -25,7 +25,7 @@
     "name": "Handwoven Basket",
     "description": "A beautifully handwoven basket made by local artisans in the Philippines. Perfect for storage or decoration.",
     "price": 800.00,
-    "image": "/images/basket.jpg",
+    "image": "https://i.ebayimg.com/images/g/-hQAAOSwtW1gTTrA/s-l1600.webp",
     "category": "Handicrafts",
     "location": "Cagayan de Oro",
     "storeId": "1"
