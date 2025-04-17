@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
-        return response()->json($products);
+        try {
+            $products = Product::where('location', 'Cagayan de Oro')->get();
+            return response()->json($products);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error fetching products', 'error' => $e->getMessage()], 500);
+        }
     }
 
-    public function show($id)
+    public function show(string $id)
     {
-        $product = Product::find($id);
-        if (!$product) {
-            return response()->json(['message' => 'Product not found'], 404);
+        try {
+            $product = Product::findOrFail($id);
+            return response()->json($product);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error fetching product', 'error' => $e->getMessage()], 500);
         }
-        return response()->json($product);
     }
 }
