@@ -84,6 +84,7 @@ const AccountSettingsPage = () => {
             </CardHeader>
             <CardContent className="space-y-2">
               <Link href="/my-orders" className="block hover:underline">My Orders</Link>
+              <Link href="/my-returns" className="block hover:underline">My Returns</Link>
               <Link href="#" className="block hover:underline">My Cancellations</Link>
             </CardContent>
           </Card>
@@ -248,3 +249,4 @@ const AccountSettingsPage = () => {
 };
 
 export default AccountSettingsPage;
+
