@@ -56,7 +56,11 @@ const Header = () => {
       {/* Logo */}
       <div className="flex items-center">
         <Link href="/">
-          <img src="/buyong_logo.png" alt="BUYong Logo" className="mr-2 rounded-full w-10 h-10 cursor-pointer"/>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/buyong-cdod.appspot.com/o/buyong_logo.png?alt=media&token=4ef99929-11eb-444a-a4a4-8e5014bbd991"
+            alt="BUYong Logo"
+            className="mr-2 rounded-full w-10 h-10 cursor-pointer"
+          />
         </Link>
         <Link href="/" className="text-2xl font-bold">
           BUYong
@@ -65,13 +69,25 @@ const Header = () => {
 
       {/* Navigation Links */}
       <nav className="hidden md:flex space-x-6">
-        <Link href="/" className="hover:underline text-black">
+        <Link
+          href="/"
+          className="hover:underline text-black data-[active=true]:text-primary-foreground"
+          style={{color: 'black'}}
+        >
           Home
         </Link>
-        <Link href="/contact" className="hover:underline text-black">
+        <Link
+          href="/contact"
+          className="hover:underline text-black data-[active=true]:text-primary-foreground"
+          style={{color: 'black'}}
+        >
           Contact
         </Link>
-        <Link href="/about" className="hover:underline text-black">
+        <Link
+          href="/about"
+          className="hover:underline text-black data-[active=true]:text-primary-foreground"
+          style={{color: 'black'}}
+        >
           About
         </Link>
       </nav>
@@ -99,8 +115,8 @@ const Header = () => {
       <div className="flex items-center space-x-2">
         <div className="relative">
           <Button variant="ghost" size="icon" asChild className="hover:underline">
-            <Link href="/checkout" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-black hover:text-white">
-              <ShoppingCart className="h-6 w-6 text-black hover:text-white"/>
+            <Link href="/checkout">
+              <ShoppingCart className="h-6 w-6 text-black hover:text-primary-foreground"/>
             </Link>
           </Button>
           {cartItemCount > 0 && (
@@ -112,8 +128,8 @@ const Header = () => {
 
         {/* User Profile Icon */}
         <Button variant="ghost" size="icon" asChild className="hover:underline">
-          <Link href="/account-settings" className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-black hover:text-white">
-            <User className="h-6 w-6 text-black hover:text-white"/>
+          <Link href="/account-settings">
+            <User className="h-6 w-6 text-black hover:text-primary-foreground"/>
           </Link>
         </Button>
       </div>
