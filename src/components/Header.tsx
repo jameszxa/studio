@@ -137,7 +137,7 @@ const Header = () => {
       <div className="flex items-center space-x-2">
         <div className="relative">
           <Button variant="ghost" size="icon" asChild className="hover:underline">
-            <Link href="/checkout">
+            <Link href="/cart">
               <ShoppingCart className="h-6 w-6 text-black hover:text-primary-foreground"/>
             </Link>
           </Button>

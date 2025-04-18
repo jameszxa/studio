@@ -95,20 +95,31 @@ const ProductDetailPage = () => {
       console.error('No product to add to cart.');
       return;
     }
-    // Retrieve existing cart items from local storage or initialize an empty array
-    const existingCartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-
-    // Check if the item already exists in the cart
-    const existingCartItemIndex = existingCartItems.findIndex((item: any) => item.id === product?.id);
-
-    if (existingCartItemIndex !== -1) {
-      // If the item exists, update the quantity
-      existingCartItems[existingCartItemIndex].quantity += quantity;
-    } else {
-      // If the item doesn't exist, add it to the cart with the specified quantity
-      existingCartItems.push({...product, quantity: quantity});
+    
+    // Retrieve existing cart items from local storage or initialize an empty array outside the try block
+    let existingCartItems: any[] = [];
+    try{
+      const storedCartItems = localStorage.getItem('cartItems');
+      existingCartItems = storedCartItems ? JSON.parse(storedCartItems) : [];
+    }catch(error){
+      console.error('Error parsing cart items from local storage', error)
     }
 
+    const existingCartItemIndex = existingCartItems.findIndex((item: any) => item.id === product.id);
+
+    if (existingCartItemIndex !== -1) {
+        existingCartItems[existingCartItemIndex].quantity += quantity;
+    } else {
+        // If the item doesn't exist, add it to the cart with only the required properties and quantity
+        existingCartItems.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: quantity
+        });
+    }
+    
     // Store the updated cart items in local storage
     localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
     // Trigger a re-render of the header to update the cart count
@@ -117,17 +128,41 @@ const ProductDetailPage = () => {
       title: "Success",
       description: `${quantity} of ${product?.name} added to cart!`,
     })
+    // Navigate to the /cart page after adding the item to the cart
+    router.push('/cart');
   };
 
   const handleBuyNow = () => {
-    // Create a cart item
-    const cartItem = {...product, quantity};
+       //Basic "add to cart" logic
+    if (!product) {
+      console.error('No product to add to cart.');
+      return;
+    }
+    // Retrieve existing cart items from local storage or initialize an empty array outside the try block
+    let existingCartItems: any[] = [];
 
-    // Store the cart item in local storage
-    localStorage.setItem('cartItems', JSON.stringify([cartItem]));
+    try{
+      const storedCartItems = localStorage.getItem('cartItems');
+      existingCartItems = storedCartItems ? JSON.parse(storedCartItems) : [];
+    }catch(error){
+      console.error('Error parsing cart items from local storage', error)
+    }
+    // Check if the item already exists in the cart
+    const existingCartItemIndex = existingCartItems.findIndex((item: any) => item.id === product.id);
 
-    // Redirect to the checkout page with quantity as a query parameter
-    router.push(`/checkout?quantity=${quantity}`);
+    if (existingCartItemIndex !== -1) {
+        existingCartItems[existingCartItemIndex].quantity += quantity;
+    } else {
+        existingCartItems.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: quantity
+        });
+    }
+    localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
+    router.push('/checkout');
   };
 
 

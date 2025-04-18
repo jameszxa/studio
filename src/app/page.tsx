@@ -28,11 +28,11 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const bannerImages = [
-    "https://i.picsum.photos/id/1060/1920/1080.jpg?hmac=E4G9ikC6Yt64qtC9TrX1jwEUvXF-xwEQtB2jT-3T7FU",
-    "https://i.picsum.photos/id/237/1920/1080.jpg?hmac=ExwG_JLRyK_0mKiZOUt54Dt9hG7QyBwJkW-3qUzlP6o",
-    "https://i.picsum.photos/id/1047/4928/3264.jpg?hmac=kfQCjnF609wS5K-nrjoAgZfEju2c0j77jqvGCUI6w2U",
-    "https://i.picsum.photos/id/105/3672/4896.jpg?hmac=WxLgV22eCjTtq_Kj10jKzx0uD9vqGeqjZw-Y-oFMgOE",
-    "https://i.picsum.photos/id/1062/4147/2756.jpg?hmac=W6wK-dVw-cGuKffZ-n7R2-byt7szm979KI3WCc5V-dQ"
+    "/images/banner.gif",
+    "/images/banner2.gif",
+    "/images/banner3.gif",
+    "/images/banner4.gif",
+    "/images/banner5.gif",
   ];
 
   useEffect(() => {
@@ -83,20 +83,21 @@ const Home = () => {
   return (
     <div className="container mx-auto py-10">
       {/* Welcome Banner */}
-      <div className="relative w-full mb-8 rounded-md overflow-hidden shadow-md">
-        <img
-          src={bannerImages[currentSlide]}
-          alt="Sale Event"
-          className="w-full h-64 object-cover transition-opacity duration-500"
-          style={{opacity: 1}} // Add transition for smoother effect
-        />
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-          <h2 className="text-4xl font-bold text-primary-foreground">Welcome to BUYong!</h2>
-          <p className="text-lg text-primary-foreground">Discover amazing deals on local Filipino products.</p>
+      <div className="relative w-full mb-8 flex overflow-hidden shadow-md max-w-[1200px] mx-auto ">
+        <div className="w-[80%] relative">
+          <img
+            src={bannerImages[currentSlide]}
+            
+            alt="Sale Event"
+            className="w-full h-[300px] object-cover transition-opacity duration-500"
+          />
         </div>
+        <div className="w-[20%] ">
+          <img src="/images/promo.jpg" alt="Promo" className="w-full h-[300px] object-cover" />
+        </div>
+
         {/* Slide Indicators */}
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+        <div className="absolute bottom-4 left-[8%]  flex justify-center space-x-2">
           {bannerImages.map((_, index) => (
             <button
               key={index}
@@ -107,7 +108,7 @@ const Home = () => {
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
-        </div>
+        </div> 
       </div>
 
       <div className="mb-8 flex justify-center">
@@ -136,7 +137,7 @@ const Home = () => {
         {/* Add New Arrivals component here */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map(product => (
-            <Card key={product.id} className="cursor-pointer" onClick={() => handleProductClick(product.id)}>
+            <Card key={product.id} className="cursor-pointer border shadow-sm hover:shadow-md transition-shadow" onClick={() => handleProductClick(product.id)}>
               <CardHeader>
                 <CardTitle>{product.name}</CardTitle>
               </CardHeader>
