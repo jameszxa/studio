@@ -12,6 +12,7 @@ import { toast } from "@/hooks/use-toast";
 import { Icons } from "@/components/icons";
 import { useRouter } from 'next/navigation';
 
+import { authenticateUser } from '@/services/user-service'; // Import authenticateUser
 const SignInPage = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const router = useRouter();
@@ -29,23 +30,19 @@ const SignInPage = () => {
         resolver: zodResolver(formSchema),
     });
 
-      const onSignIn = async (values: z.infer<typeof formSchema>) => {
+    const onSignIn = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         try {
-            // Simulate authentication by checking if the email exists in local storage
-            const storedEmail = localStorage.getItem('email');
-
-            if (values.email === storedEmail) {
+            const user = await authenticateUser(values.email, values.password); // Call authenticateUser
+            if (user) {
                 toast({
                     title: "Sign in successfully!",
                     description: "You are now signed in.",
                 });
-
-                // Set a signed-in flag or store user data in localStorage
+                // Store user information (adjust based on your user data structure)
                 localStorage.setItem('isSignedIn', 'true');
-                localStorage.setItem('email', values.email);
-
-                router.push('/');
+                localStorage.setItem('user', JSON.stringify(user));
+                router.push('/'); // Redirect to home page
             } else {
                 toast({
                     variant: "destructive",
@@ -58,8 +55,8 @@ const SignInPage = () => {
 
             toast({
                 variant: "destructive",
-                title: "Error signing in.",
-                description: "Invalid credentials. Please double-check your email and password.",
+                title: "Error signing in.",               
+                description: error.response?.data?.message || "Invalid credentials. Please double-check your email and password.", // Display backend error message if available
             });
         } finally {
             setIsLoading(false);
@@ -78,15 +75,15 @@ const SignInPage = () => {
             <label htmlFor="email">Email</label>
             <Input id="email" type="email" placeholder="m@example.com" {...register("email")} />
             {errors.email && (
-                        <p className="text-red-500 text-sm">{errors.email.message}</p>
-                    )}
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
           </div>
           <div className="grid gap-2">
             <label htmlFor="password">Password</label>
             <Input id="password" type="password" placeholder="Password" {...register("password")} />
             {errors.password && (
-                        <p className="text-red-500 text-sm">{errors.password.message}</p>
-                    )}
+                <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
           </div>
           <Button onClick={handleSubmit(onSignIn)} disabled={isLoading}>
                     {isLoading && (
@@ -96,7 +93,7 @@ const SignInPage = () => {
                 </Button>
         </CardContent>
         <div className='p-6'>
-                    Don't have an account? <Link href="/auth/create-account">Create Account</Link>
+            Don't have an account? <Link href="/auth/create-account">Create Account</Link>
                 </div>
       </Card>
     </div>

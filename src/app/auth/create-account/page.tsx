@@ -11,6 +11,7 @@ import * as z from "zod";
 import { toast } from "@/hooks/use-toast";
 import { Icons } from "@/components/icons";
 import { useRouter } from 'next/navigation';
+import { createUser } from '@/services/user-service'; // Import createUser
 
 const CreateAccountPage = () => {
     const [isLoading, setIsLoading] = React.useState(false);
@@ -39,18 +40,17 @@ const CreateAccountPage = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         try {
-            // Simulate account creation by storing email in local storage.
-            localStorage.setItem('email', values.email);
-
+            await createUser(values.email, values.password); // Call createUser
             toast({
                 title: "Account created successfully!",
                 description: "You can now sign in to your new account.",
             });
-
-            // Redirect to account settings page
-            router.push('/account-settings');
+            router.push('/auth/sign-in'); // Redirect to sign-in page
         } catch (error: any) {
             console.error("Account creation error:", error);
+
+
+            // Redirect to account settings page
 
             toast({
                 variant: "destructive",
