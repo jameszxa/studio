@@ -1,0 +1,85 @@
+
+[
+  {
+    "id": "1",
+    "name": "Barong Tagalog - House of HABI",
+    "description": "Authentic Barong Tagalog from House of HABI, a local artisan shop in Cagayan de Oro. Perfect for formal events.",
+    "price": 2500.00,
+    "image": "https://rootscollective.ph/cdn/shop/files/Edit_HouseofHABIBarong.png?v=1691043760&width=1080",
+    "category": "Clothing",
+    "location": "Cagayan de Oro",
+    "storeId": "1"
+  },
+  {
+    "id": "2",
+    "name": "Carmen's Kitchen Strawberry Jam",
+    "description": "Homemade Strawberry Jam from Carmen's Kitchen in Cagayan de Oro. Made with locally sourced strawberries.",
+    "price": 250.00,
+    "image": "https://thebakersalmanac.com/wp-content/uploads/2021/04/Homemade-strawberry-jam-in-jar-683x1024.jpg",
+    "category": "Food",
+    "location": "Cagayan de Oro",
+    "storeId": "2"
+  },
+  {
+    "id": "3",
+    "name": "Tagolwanen Women Weavers Basket",
+    "description": "Handwoven basket by the Tagolwanen Women Weavers of Cagayan de Oro. Perfect for storage or decoration.",
+    "price": 800.00,
+    "image": "https://i.ebayimg.com/images/g/-hQAAOSwtW1gTTrA/s-l1600.webp",
+    "category": "Handicrafts",
+    "location": "Cagayan de Oro",
+    "storeId": "1"
+  },
+  {
+    "id": "4",
+    "name": "Cebu's Best Dried Mangoes",
+    "description": "Premium dried mangoes from Cebu's Best, now available at local stores in Cagayan de Oro.",
+    "price": 300.00,
+    "image": "https://shopmetro.ph/itpark-supermarket/wp-content/uploads/2023/10/SM7775000-5.jpg",
+    "category": "Food",
+    "location": "Cagayan de Oro",
+     "storeId": "2"
+  },
+  {
+    "id": "5",
+    "name": "Capiz Shell Lantern from Oro Handicrafts",
+    "description": "Decorative lantern made from Capiz shells by Oro Handicrafts, a local shop in Cagayan de Oro.",
+    "price": 1200.00,
+    "image": "https://i.etsystatic.com/9048156/r/il/31e16e/1764855617/il_fullxfull.1764855617_ddy0.jpg",
+    "category": "Handicrafts",
+    "location": "Cagayan de Oro",
+    "storeId": "1"
+  },
+  {
+    "id": "6",
+    "name": "Apo ni Lola Tablea",
+    "description": "Rich and flavorful tablea from Apo ni Lola, sourced locally and sold in Cagayan de Oro.",
+    "price": 450.00,
+    "image": "https://www.humblemarket.ph/wp-content/uploads/2019/08/tablea-raw-cacao-by-the-gram-at-humble-market-bulk-store-manila-e1622182056624.jpg",
+    "category": "Food",
+    "location": "Cagayan de Oro",
+    "storeId": "2"
+  },
+  {
+    "id": "7",
+    "name": "Mother of Pearl Inlaid Box by CDO Crafts",
+    "description": "Elegant jewelry box inlaid with mother of pearl, handcrafted by CDO Crafts artisans.",
+    "price": 1800.00,
+    "image": "https://images.masterart.com//AmirMohtashemiLtdMedia/Artworks/Mother-of-Pearl%20Inlaid%20Lacquered%20Box%20with%20European%20Figures_T638449013483405102.jpg?width=2000&height=2000&mode=max&scale=both&qlt=90",
+    "category": "Handicrafts",
+    "location": "Cagayan de Oro",
+    "storeId": "1"
+  },
+  {
+    "id": "8",
+    "name": "Inaul Scarf from Mindanao Silk",
+    "description": "Vibrant and intricately woven Inaul cloth from Mindanao Silk, available at local markets in Cagayan de Oro.",
+    "price": 3000.00,
+    "image": "https://www.rappler.com/tachyon/r3-assets/E374637DADE44DC080B690E68DB7D0D7/img/52263B96D89B4E9C8072A7F4863D2369/1__MAGUINDANAOS_WEAVE.jpg?resize=1000%2C563&zoom=1",
+    "category": "Clothing",
+    "location": "Cagayan de Oro",
+    "storeId": "2"
+  }
+]
+    
+    
