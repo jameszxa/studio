@@ -34,7 +34,7 @@ const SignInPage = () => {
         setIsLoading(true);
         try {
             const user = await authenticateUser(values.email, values.password); // Call authenticateUser
-            if (user) {
+            if (user && user.email) {
                 toast({
                     title: "Sign in successfully!",
                     description: "You are now signed in.",

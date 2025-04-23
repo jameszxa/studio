@@ -6,6 +6,40 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Button Hover Animation */
+.button-hover {
+  transition: transform 0.2s ease-in-out;
+}
+
+.button-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Product Card Fade-In Animation */
+.product-card-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Page Transition Animation */
+.page-transition {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Parallax Effect */
+.parallax {
+  background-attachment: fixed;
+}
+
 @layer base {
   :root {
     --background: 210 0% 96.1%; /* Light Gray */
