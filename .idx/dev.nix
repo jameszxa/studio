@@ -8,7 +8,7 @@
     pkgs.nodejs_20
     pkgs.phpPackages.composer
     pkgs.php
-    pkgs.mysql
+    aspkgs.mysql
   ];
   # Sets environment variables in the workspace
   env = {};
